@@ -21,6 +21,12 @@ function requete($requete) {
     return mysqli_query($conn, $requete);
 }
 
+if ($_REQUEST['tweet']) {
+    $tweet = $_REQUEST['tweet'];
+    $ip = $_SERVER['REMOTE_ADDR'];
+    print "$tweet, $ip";
+}
+
 print <<< EOF
 
 <form action=index.php>
