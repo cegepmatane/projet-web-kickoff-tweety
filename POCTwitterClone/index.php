@@ -21,6 +21,12 @@ function requete($requete) {
     return mysqli_query($conn, $requete);
 }
 
+function getTete($requete) {
+    $res = requete($requete);
+    $li = mysqli_fetch_row($res);
+    return $li[0];
+}
+
 if ($_REQUEST['tweet']) {
     $tweet = $_REQUEST['tweet'];
     $ip = $_SERVER['REMOTE_ADDR'];
