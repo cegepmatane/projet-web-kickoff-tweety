@@ -37,6 +37,13 @@ function getUid() {
     return getTete("select uid from user where ip = " . $ip);
 }
 
+if ($_REQUEST['follow']) {
+    // Enregistrer le follow
+    $follow = mysqli_real_escape_string($conn, $_REQUEST['follow']);
+    $uid = getUid();
+    requete("insert into follows values('$uid', '$follow')");
+}
+
 if ($_REQUEST['tweet']) {
     // Récupérer le contenu du tweet de l'utilisateur
     $tweet = mysqli_real_escape_string($conn, $_REQUEST['tweet']);
