@@ -64,6 +64,7 @@ if ($_REQUEST['tweet']) {
 
 /** Affiche une liste de tweets */
 function afficherTweets($tweets) {
+    global $utilisateur;
     print "<table>";
     foreach ($tweets as $tweet) {
         $uid = htmlspecialchars($tweet['uid']);
@@ -71,7 +72,6 @@ function afficherTweets($tweets) {
         $date = htmlspecialchars(($tweet['date']));
 
         // Vérifier si l'utilisateur ne suit pas déjà les autres utilisateurs affichés
-        $utilisateur = getUid();
         if (!getTete("select follower from follows where uid='$utilisateur' and follower='$uid'")) {
             $follow = <<< EOF
 <a href="index.php?follow=$uid">Follow</a>
@@ -96,9 +96,23 @@ print <<< EOF
 
 EOF;
 
+$utilisateur = getUid();
 // Récupérer les tweets de tous les utilisateurs et et les afficher
 $res = requete("select * from tweets order by date desc");
 while ($li = mysqli_fetch_assoc($res)) {
     $tweets[] = $li;
 }
 afficherTweets($tweets);
+
+print "<hr>";
+
+print "Utilisateurs suivis.";
+// Récupérer les tweets des utilisateurs suivis et les afficher
+$tweets = array();
+$res = requete("select * from tweets where uid in (select follower from follows where uid='$utilisateur') 
+order by date desc");
+while ($li = mysqli_fetch_assoc($res)) {
+    $tweets[] = $li;
+}
+afficherTweets($tweets);
+
