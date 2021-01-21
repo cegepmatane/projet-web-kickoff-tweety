@@ -5,7 +5,7 @@ $utilisateurbd = 'root';
 $motdepassebd = '';
 $nombd = 'poctwitterclone';
 
-$conn = mysqli_connect($hotebd, $utilisateurbd, $motdepassebd);
+$conn = mysqli_connect($hotebd, $utilisateurbd, $motdepassebd, $nombd);
 
 mysqli_select_db($conn, $nombd);
 
@@ -79,9 +79,16 @@ while ($li = mysqli_fetch_assoc($res)) {
     $post = htmlspecialchars($li['post']);
     $date = htmlspecialchars(($li['date']));
 
-    $follow = <<< EOF
+    // Vérifier si l'utilisateur ne suit pas déjà les autres utilisateurs affichés
+    $utilisateur = getUid();
+    if (!getTete("select follower from follows where uid='$utilisateur' and follower='$uid'")) {
+        $follow = <<< EOF
 <a href="index.php?follow=$uid">Follow</a>
 EOF;
+    } else {
+        $follow = "Followed.";
+    }
+
 
     print <<< EOF
 <tr><td>$uid</td><td>$post</td><td>$date</td><td>$follow</td></tr>
