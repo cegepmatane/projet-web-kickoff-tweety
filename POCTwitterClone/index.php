@@ -29,6 +29,14 @@ function getTete($requete) {
     return $li[0];
 }
 
+function getUid() {
+    global $conn;
+    // Récupérer l'adresse ip de l'utilisateur
+    $ip = mysqli_real_escape_string($conn, $_SERVER['REMOTE_ADDR']);
+    // Récupérer l'id de l'utilisateur
+    return getTete("select uid from user where ip = " . $ip);
+}
+
 if ($_REQUEST['tweet']) {
     // Récupérer le contenu du tweet de l'utilisateur
     $tweet = mysqli_real_escape_string($conn, $_REQUEST['tweet']);
@@ -36,7 +44,7 @@ if ($_REQUEST['tweet']) {
     $ip = mysqli_real_escape_string($conn, $_SERVER['REMOTE_ADDR']);
 
     // Si l'utilisateur qui tweete n'existe pas, le créer
-    $uid = getTete("select uid from user where ip = " . $ip);
+    $uid = getUid();
     if (!$uid) {
         requete("insert into utilisateurs(ip) values ('$ip')");
     }
