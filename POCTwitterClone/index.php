@@ -37,11 +37,18 @@ function getUid() {
     return getTete("select uid from user where ip = " . $ip);
 }
 
+$utilisateur = getUid();
+
 if ($_REQUEST['follow']) {
     // Enregistrer le follow
     $follow = mysqli_real_escape_string($conn, $_REQUEST['follow']);
-    $uid = getUid();
-    requete("insert into follows values('$uid', '$follow')");
+    requete("insert into follows(uid, follower) values ('$utilisateur', '$follow')");
+}
+
+if ($_REQUEST['unfollow']) {
+    // Enregistrer le unfollow
+    $unfollow = mysqli_real_escape_string($conn, $_REQUEST['unfollow']);
+    requete("delete from follows where uid='$utilisateur' and follower='$unfollow'");
 }
 
 if ($_REQUEST['tweet']) {
@@ -77,7 +84,9 @@ function afficherTweets($tweets) {
 <a href="index.php?follow=$uid">Follow</a>
 EOF;
         } else {
-            $follow = "Followed.";
+            $follow = <<< EOF
+<a href="index.php?unfollow=$uid">Unfollow</a>
+EOF;
         }
 
         print <<< EOF
@@ -96,7 +105,6 @@ print <<< EOF
 
 EOF;
 
-$utilisateur = getUid();
 // Récupérer les tweets de tous les utilisateurs et et les afficher
 $res = requete("select * from tweets order by date desc");
 while ($li = mysqli_fetch_assoc($res)) {
