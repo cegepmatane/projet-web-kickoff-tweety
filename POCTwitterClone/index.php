@@ -63,8 +63,13 @@ while ($li = mysqli_fetch_assoc($res)) {
     $uid = htmlspecialchars($li['uid']);
     $post = htmlspecialchars($li['post']);
     $date = htmlspecialchars(($li['date']));
+
+    $follow = <<< EOF
+<a href="index.php?follow=$uid">Follow</a>
+EOF;
+
     print <<< EOF
-    <tr><td>$uid</td><td>$post</td><td>$date</td></tr>
-    EOF;
+<tr><td>$uid</td><td>$post</td><td>$date</td><td>$follow</td></tr>
+EOF;
 }
 print "</table>";
