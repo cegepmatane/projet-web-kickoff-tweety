@@ -44,7 +44,7 @@ if ($_REQUEST['tweet']) {
     $date = Date("Y-m-d H:i:s");
     requete("insert into tweets(uid, post, date) values('$uid', '$tweet', '$date')");
 
-    print "$tweet, $ip";
+    // print "$tweet, $ip";
 }
 
 print <<< EOF
@@ -55,3 +55,16 @@ print <<< EOF
 </form>
 
 EOF;
+
+// Récupérer les tweets et les afficher
+$res = requete("select * from tweets order by date desc");
+print "<table>";
+while ($li = mysqli_fetch_assoc($res)) {
+    $uid = htmlspecialchars($li['uid']);
+    $post = htmlspecialchars($li['post']);
+    $date = htmlspecialchars(($li['date']));
+    print <<< EOF
+    <tr><td>$uid</td><td>$post</td><td>$date</td></tr>
+    EOF;
+}
+print "</table>";
