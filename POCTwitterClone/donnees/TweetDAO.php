@@ -29,6 +29,21 @@ class TweetDAO extends DAO {
         return $tweets;
     }
 
+    /** Ajoute un tweet */
+    public function addTweet($tweet, $ip): void {
+        global $conn;
+        $tweet = mysqli_real_escape_string($conn, $tweet);
+        $ip  = mysqli_real_escape_string($conn, $ip);
+        // Si l'utilisateur qui tweete n'existe pas, le créer
+        $uid = $this->getUid();
+        if (!$uid) {
+            requete("insert into utilisateurs(ip) values ('$ip')");
+        }
+        // Enregistrer le tweet
+        $date = Date("Y-m-d H:i:s");
+        $this->requete("insert into tweets(uid, post, date) values('$uid', '$tweet', '$date')");
+    }
+
     /** Retourne l'id de l'utilisateur connecté */
     public function getUid() {
         global $conn;
