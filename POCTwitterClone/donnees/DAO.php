@@ -14,9 +14,13 @@ abstract class DAO {
 
     /** Renvoie la première ligne d'une requête */
     public function getLigne($requete) {
-        $res = requete($requete);
-        $li = mysqli_fetch_row($res);
-        return $li[0];
+        $res = $this->requete($requete);
+        if ($res !== false) {
+            $li = mysqli_fetch_row($res);
+            return $li[0];
+        }
+        return null;
+
     }
 }
 
