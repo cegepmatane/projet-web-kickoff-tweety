@@ -7,12 +7,12 @@
 </form>
 
 <!-- Affichage tweets -->
-<table class="table-auto border-2">
+<table class="mt-5 table-auto border-2">
     <?php foreach ($tweets as $tweet): ?>
         <tr class="border-2">
-            <td class="border-2"><?=$tweet->uid?></td>
-            <td class="border-2"><?=$tweet->post?></td>
-            <td class="border-2"><?=$tweet->date?></td>
+            <td class="border-2"><?=$tweet->getUid()?></td>
+            <td class="border-2"><?=$tweet->getPost()?></td>
+            <td class="border-2"><?=$tweet->getDate()?></td>
         </tr>
     <?php endforeach; ?>
 </table>
