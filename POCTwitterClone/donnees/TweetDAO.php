@@ -15,6 +15,20 @@ class TweetDAO extends DAO {
         return $tweets;
     }
 
+    /** Retourne un array des tweets des utilisateurs suivis */
+    public function getTweetsSuivis($utilisateur = false): array {
+        if ($utilisateur === false) {
+            $utilisateur = $this->getUid();
+        }
+        $res = $this->requete("select * from tweets where uid in (select follower from follows where uid='$utilisateur') 
+        order by date desc");
+        $tweets = array();
+        while ($tweet = mysqli_fetch_assoc($res)) {
+            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date']);
+        }
+        return $tweets;
+    }
+
     /** Retourne l'id de l'utilisateur connecté */
     public function getUid() {
         global $conn;
