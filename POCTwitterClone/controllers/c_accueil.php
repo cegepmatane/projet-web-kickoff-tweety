@@ -6,5 +6,7 @@ $tweetDAO = new TweetDAO();
 
 $tweets = $tweetDAO->getTweets();
 
+$tweetsSuivis = $tweetDAO->getTweetsSuivis();
+
 // Appel de la vue
 require_once ('./vues/v_accueil.php');
