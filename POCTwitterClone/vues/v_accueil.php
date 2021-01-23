@@ -13,6 +13,15 @@
             <td class="border-2"><?=$tweet->getUid()?></td>
             <td class="border-2"><?=$tweet->getPost()?></td>
             <td class="border-2"><?=$tweet->getDate()?></td>
+            <td class="border-2"><?=$tweet->getSuivi()?></td>
+            <?php if ($tweet->getSuivi()) {
+                $follow = '<a href="index.php?follow=$uid" class="text-indigo-500
+                hover:text-indigo-600 underline">Follow</a>';
+            } else {
+                $follow = '<a href="index.php?unfollow=$uid" class="text-indigo-500
+                hover:text-indigo-600 underline">Unfollow</a>';
+            } ?>
+            <td class="border-2"><?=$follow?></td>
         </tr>
     <?php endforeach; ?>
 </table>
@@ -26,6 +35,14 @@
                 <td class="border-2"><?=$tweet->getUid()?></td>
                 <td class="border-2"><?=$tweet->getPost()?></td>
                 <td class="border-2"><?=$tweet->getDate()?></td>
+                <?php if ($tweet->getSuivi()) {
+                    $follow = '<a href="index.php?follow=$uid" class="text-indigo-500
+                hover:text-indigo-600 underline">Follow</a>';
+                } else {
+                    $follow = '<a href="index.php?unfollow=$uid" class="text-indigo-500
+                hover:text-indigo-600 underline">Unfollow</a>';
+                } ?>
+                <td class="border-2"><?=$follow?></td>
             </tr>
         <?php endforeach; ?>
     </table>
