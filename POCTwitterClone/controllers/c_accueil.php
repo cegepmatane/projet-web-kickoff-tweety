@@ -7,17 +7,15 @@ $tweetDAO = new TweetDAO();
 $utilisateurDAO = new UtilisateurDAO();
 
 if (!empty($_REQUEST['tweet'])) {
-    // Récupérer le contenu du tweet de l'utilisateur
-    $tweet = $_REQUEST['tweet'];
-    // Récupérer l'adresse ip de l'utilisateur
-    $ip = $_SERVER['REMOTE_ADDR'];
-
-    $tweetDAO->ajouterTweet($tweet, $ip);
+    $tweetDAO->ajouterTweet($_REQUEST['tweet'], $_SERVER['REMOTE_ADDR']);
 }
 
 if (!empty($_REQUEST['follow'])) {
-    var_dump('hey');
     $utilisateurDAO->ajouterAbonnement($_REQUEST['follow']);
+}
+
+if (!empty($_REQUEST['unfollow'])) {
+    $utilisateurDAO->retirerAbonnement($_REQUEST['unfollow']);
 }
 
 $tweets = $tweetDAO->obtenirTweets();
