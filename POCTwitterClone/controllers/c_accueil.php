@@ -4,7 +4,7 @@ require_once ('./donnees/TweetDAO.php');
 
 $tweetDAO = new TweetDAO();
 
-if ($_REQUEST['tweet']) {
+if (!empty($_REQUEST['tweet'])) {
     // Récupérer le contenu du tweet de l'utilisateur
     $tweet = $_REQUEST['tweet'];
     // Récupérer l'adresse ip de l'utilisateur
