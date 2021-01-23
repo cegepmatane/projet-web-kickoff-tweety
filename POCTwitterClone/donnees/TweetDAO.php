@@ -10,7 +10,11 @@ class TweetDAO extends DAO {
         $res = $this->requete("select * from tweets order by date desc");
         $tweets = array();
         while ($tweet = mysqli_fetch_assoc($res)) {
-            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date']);
+            $suivi = false;
+            if ($this->estUnFollower($this->getUid(), $tweet['uid'])) {
+                $suivi = true;
+            }
+            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date'], $suivi);
         }
         return $tweets;
     }
@@ -24,7 +28,11 @@ class TweetDAO extends DAO {
         order by date desc");
         $tweets = array();
         while ($tweet = mysqli_fetch_assoc($res)) {
-            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date']);
+            $suivi = false;
+            if ($this->estUnFollower($this->getUid(), $tweet['uid'])) {
+                $suivi = true;
+            }
+            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date'], $suivi);
         }
         return $tweets;
     }
@@ -42,6 +50,14 @@ class TweetDAO extends DAO {
         // Enregistrer le tweet
         $date = Date("Y-m-d H:i:s");
         $this->requete("insert into tweets(uid, post, date) values('$uid', '$tweet', '$date')");
+    }
+
+    /** Retourne true si l'utilisateur suit l'autre utilisateur */
+    public function estUnFollower($utilisateur, $follower): bool {
+        if ($this->getLigne("select follower from follows where uid='$utilisateur' and follower='$follower'") === null) {
+            return false;
+        }
+        return true;
     }
 
     /** Retourne l'id de l'utilisateur connecté */
