@@ -5,12 +5,14 @@ class Tweet {
     private $_uid;
     private $_post;
     private $_date;
+    private $_suivi;
 
-    public function __construct($tid, $uid, $post, $date) {
+    public function __construct($tid, $uid, $post, $date, $suivi) {
         $this->_tid = $tid;
         $this->_uid = $uid;
         $this->_post = $post;
         $this->_date = $date;
+        $this->_suivi = $suivi;
     }
 
     public function getTid() {
@@ -29,6 +31,10 @@ class Tweet {
         return $this->_date;
     }
 
+    public function getSuivi() {
+        return $this->_suivi;
+    }
+
     public function setTid($tid) {
         $this->_tid = $tid;
     }
@@ -43,5 +49,9 @@ class Tweet {
 
     public function setDate($date) {
         $this->_date = $date;
+    }
+
+    public function setSuivi($suivi) {
+        $this->_suivi = $suivi;
     }
 }
