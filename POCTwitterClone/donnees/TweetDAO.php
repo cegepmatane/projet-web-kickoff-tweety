@@ -39,9 +39,8 @@ class TweetDAO extends DAO {
 
     /** Ajoute un tweet */
     public function addTweet($tweet, $ip): void {
-        global $conn;
-        $tweet = mysqli_real_escape_string($conn, $tweet);
-        $ip  = mysqli_real_escape_string($conn, $ip);
+        $tweet = $this->filter($tweet);
+        $ip  = $this->filter($ip);
         // Si l'utilisateur qui tweete n'existe pas, le créer
         $uid = $this->getUid();
         if (!$uid) {
@@ -54,6 +53,8 @@ class TweetDAO extends DAO {
 
     /** Retourne true si l'utilisateur suit l'autre utilisateur */
     public function estUnFollower($utilisateur, $follower): bool {
+        $utilisateur = $this->filter($utilisateur);
+        $follower = $this->filter($follower);
         if ($this->getLigne("select follower from follows where uid='$utilisateur' and follower='$follower'") === null) {
             return false;
         }
@@ -62,8 +63,7 @@ class TweetDAO extends DAO {
 
     /** Retourne l'id de l'utilisateur connecté */
     public function getUid() {
-        global $conn;
-        $ip = mysqli_real_escape_string($conn, $_SERVER['REMOTE_ADDR']);
+        $ip = $this->filter($_SERVER['REMOTE_ADDR']);
         return $this->getLigne("select uid from utilisateurs where ip='$ip'");
     }
 }

@@ -22,5 +22,10 @@ abstract class DAO {
         return null;
 
     }
+
+    public function filter($variable) {
+        global $conn;
+        return mysqli_real_escape_string($conn, $variable);
+    }
 }
 
