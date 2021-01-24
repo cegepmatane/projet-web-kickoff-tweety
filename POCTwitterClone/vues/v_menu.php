@@ -3,8 +3,7 @@
     <div>
         <ul>
             <li>
-                <a href="../index.php" class="text-indigo-500
-                hover:text-indigo-600 underline">Accueil </a>
+                <a href="../index.php">Accueil </a>
             </li>
         </ul>
     </div>
