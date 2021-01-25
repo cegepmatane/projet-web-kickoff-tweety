@@ -51,6 +51,12 @@ class TweetDAO extends DAO {
         $this->requete("insert into tweets(uid, post, date) values('$utilisateur', '$tweet', '$date')");
     }
 
+    /** Retourne un tweet */
+    public function detaillerTweet($tid) {
+        $res = $this->obtenirLigne("select * from tweets where tid='".$tid."'");
+        return new Tweet($res['tid'], $res['uid'], $res['post'], $res['date'], null);
+    }
+
     /** Supprimer un tweet */
     public function supprimerTweet($tid): void {
         $this->requete("delete from tweets where tid='".$tid."'");
