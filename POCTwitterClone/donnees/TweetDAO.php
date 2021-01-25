@@ -57,6 +57,11 @@ class TweetDAO extends DAO {
         return new Tweet($res['tid'], $res['uid'], $res['post'], $res['date'], null);
     }
 
+    /** Modifie un tweet */
+    public function modifierTweet($tid, $post): void {
+        $this->requete("update tweets set post='$post' where tid='$tid'");
+    }
+
     /** Supprimer un tweet */
     public function supprimerTweet($tid): void {
         $this->requete("delete from tweets where tid='".$tid."'");
