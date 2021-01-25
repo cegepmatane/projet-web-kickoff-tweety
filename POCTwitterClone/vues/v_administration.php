@@ -9,7 +9,7 @@
             <td><?=$tweet->getPost()?></td>
             <td><?=$tweet->getDate()?></td>
             <td><a href="index.php?page=modifier&tid=<?=$tweet->getTid()?>">Modifier</a></td>
-            <td><a href="index.php?page=administration&supprimer=<?=$tweet->getTid()?>">Supprimer</a></td>
+            <td><a href="index.php?page=supprimer&tid=<?=$tweet->getTid()?>">Supprimer</a></td>
         </tr>
     <?php endforeach; ?>
 </table>
