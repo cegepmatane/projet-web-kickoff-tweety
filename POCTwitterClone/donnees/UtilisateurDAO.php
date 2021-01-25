@@ -21,6 +21,6 @@ class UtilisateurDAO extends DAO {
     /** Retourne l'id de l'utilisateur connecté */
     public function obtenirUtilisateur() {
         $ip = $this->filter($_SERVER['REMOTE_ADDR']);
-        return $this->getLigne("select uid from utilisateurs where ip='$ip'");
+        return $this->obtenirUnique("select uid from utilisateurs where ip='$ip'");
     }
 }

@@ -13,14 +13,18 @@ abstract class DAO {
     }
 
     /** Renvoie la première ligne d'une requête */
-    public function getLigne($requete) {
+    public function obtenirUnique($requete) {
         $res = $this->requete($requete);
         if ($res->num_rows !== 0) {
             $li = mysqli_fetch_row($res);
             return $li[0];
         }
         return null;
+    }
 
+    public function obtenirLigne($requete) {
+        $res = $this->requete($requete);
+        return mysqli_fetch_assoc($res);
     }
 
     public function filter($variable) {

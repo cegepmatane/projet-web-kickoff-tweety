@@ -60,7 +60,7 @@ class TweetDAO extends DAO {
     public function estUnFollower($utilisateur, $follower): bool {
         $utilisateur = $this->filter($utilisateur);
         $follower = $this->filter($follower);
-        if ($this->getLigne("select follower from follows where uid='$utilisateur' and follower='$follower'") === null) {
+        if ($this->obtenirUnique("select follower from follows where uid='$utilisateur' and follower='$follower'") === null) {
             return false;
         }
         return true;
@@ -69,6 +69,6 @@ class TweetDAO extends DAO {
     /** Retourne l'id de l'utilisateur connecté */
     public function obtenirUtilisateur() {
         $ip = $this->filter($_SERVER['REMOTE_ADDR']);
-        return $this->getLigne("select uid from utilisateurs where ip='$ip'");
+        return $this->obtenirUnique("select uid from utilisateurs where ip='$ip'");
     }
 }
