@@ -51,6 +51,11 @@ class TweetDAO extends DAO {
         $this->requete("insert into tweets(uid, post, date) values('$utilisateur', '$tweet', '$date')");
     }
 
+    /** Supprimer un tweet */
+    public function supprimerTweet($tid): void {
+        $this->requete("delete from tweets where tid='".$tid."'");
+    }
+
     /** Retourne true si l'utilisateur suit l'autre utilisateur */
     public function estUnFollower($utilisateur, $follower): bool {
         $utilisateur = $this->filter($utilisateur);
