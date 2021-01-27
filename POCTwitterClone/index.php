@@ -6,4 +6,4 @@ if (isset($_GET['page'])) {
     $page = "accueil";
 }
 
-require_once('controllers/c_'.$page.'.php');
+require_once('controleurs/c_'.$page.'.php');
