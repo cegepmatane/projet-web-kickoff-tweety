@@ -19,6 +19,20 @@ class Accesseur {
 
 class TweetDAO extends Accesseur implements TweetSQL {
 
+    /** Retourne un array de tous les tweets */
+    public function listerTweets(): array {
+        self::initialiser();
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEETS);
+        $requete->execute();
+
+        $tweets = $requete->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($tweets as $tweet) {
+            $suivi = false;
+            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) $suivi = true;
+            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date'], $suivi);
+        }
+        return $tweets;
+    }
 
     /** Retourne un array des tweets des utilisateurs suivis */
     public function listerTweetsSuivis($utilisateur = false): array {
