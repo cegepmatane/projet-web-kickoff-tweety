@@ -19,4 +19,17 @@ class Accesseur {
 
 class TweetDAO extends Accesseur implements TweetSQL {
 
+    /** Retourne l'id de l'utilisateur connecté */
+    public function obtenirUtilisateur() {
+        self::initialiser();
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_UTILISATEUR);
+        $requete->bindParam(':ip', $ip, PDO::PARAM_STR);
+        $requete->execute();
+
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
