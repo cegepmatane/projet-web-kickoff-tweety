@@ -19,4 +19,16 @@ class Accesseur {
 
 class TweetDAO extends Accesseur implements TweetSQL {
 
+    /** Retourne un tweet */
+    public function detaillerTweet($tid) {
+        self::initialiser();
+
+        $requete = self::$bd->prepare(self::SQL_DETAILLER_TWEET);
+        $requete->bindParam(':tid', $tid, PDO::PARAM_INT);
+        $requete->execute();
+
+        $tweet = $requete->fetch(PDO::FETCH_ASSOC);
+        return new Tweet($requete['tid'], $requete['uid'], $requete['post'], $requete['date'], null);
+    }
+
 }
