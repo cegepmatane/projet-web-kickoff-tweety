@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 21 jan. 2021 à 02:57
+-- Généré le : mer. 27 jan. 2021 à 16:00
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.14
 
@@ -32,6 +32,13 @@ CREATE TABLE `follows` (
   `follower` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `follows`
+--
+
+INSERT INTO `follows` (`uid`, `follower`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -50,19 +57,9 @@ CREATE TABLE `tweets` (
 --
 
 INSERT INTO `tweets` (`tid`, `uid`, `post`, `date`) VALUES
-(5, 0, 'azda', '2021-01-21 00:49:38'),
-(14, 0, 'regregzerg', '2021-01-21 01:00:24'),
-(15, 0, 'htrnbgfb', '2021-01-21 01:00:30'),
-(16, 0, 'tyh\"nyth', '2021-01-21 01:04:23'),
-(17, 0, 'egrter', '2021-01-21 01:04:30'),
-(19, 0, 'zefzef', '2021-01-21 01:20:28'),
-(20, 0, 'sdfds', '2021-01-21 01:20:33'),
-(21, 0, 'zffezf', '2021-01-21 01:23:21'),
-(22, 0, 'zer', '2021-01-21 01:24:34'),
-(23, 0, 'erere', '2021-01-21 01:25:09'),
-(24, 0, 'azeaz', '2021-01-21 01:26:36'),
-(25, 26, 'ergtrhgrtgf', '2021-01-21 00:59:38'),
-(26, 26, 'ngrfgns', '2021-01-21 00:59:38');
+(26, 26, 'ngrfgns', '2021-01-21 00:59:38'),
+(27, 1, 'tester', '2021-01-22 15:21:36'),
+(33, 1, 'tester', '2021-01-27 15:06:18');
 
 -- --------------------------------------------------------
 
@@ -116,13 +113,13 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `tweets`
 --
 ALTER TABLE `tweets`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
