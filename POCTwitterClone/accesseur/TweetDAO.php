@@ -19,6 +19,20 @@ class Accesseur {
 
 class TweetDAO extends Accesseur implements TweetSQL {
 
+
+    /** Retourne true si l'utilisateur suit l'autre utilisateur sinon false*/
+    public function estUnFollower($utilisateur, $follower): bool {
+        self::initialiser();
+
+        $requete = self::$bd->prepare(self::SQL_EST_UN_FOLLOWER);
+        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':follower', $follower, PDO::PARAM_INT);
+        $requete->execute();
+
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        return !($resultat === null);
+    }
+
     /** Retourne l'id de l'utilisateur connecté */
     public function obtenirUtilisateur() {
         self::initialiser();
