@@ -41,4 +41,13 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete->execute();
     }
 
+    /** Supprime un tweet */
+    public function supprimerTweet($tid): void {
+        self::initialiser();
+
+        $requete = self::$bd->prepare(self::SQL_SUPPRIMER_TWEET);
+        $requete->bindParam(':tid', $tid, PDO::PARAM_INT);
+        $requete->excute();
+    }
+
 }
