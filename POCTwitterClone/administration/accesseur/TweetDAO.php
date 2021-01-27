@@ -31,4 +31,14 @@ class TweetDAO extends Accesseur implements TweetSQL {
         return new Tweet($requete['tid'], $requete['uid'], $requete['post'], $requete['date'], null);
     }
 
+    /** Modifie un tweet */
+    public function modifierTweet($tid, $post): void {
+        self::initialiser();
+
+        $requete = self::$bd->prepare(self::SQL_MODIFIER_TWEET);
+        $requete->bindParam(':tid', $tid, PDO::PARAM_INT);
+        $requete->bindParam(':post', $post, PDO::PARAM_STR);
+        $requete->execute();
+    }
+
 }
