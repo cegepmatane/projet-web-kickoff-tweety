@@ -18,6 +18,18 @@ class Accesseur {
 
 class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
 
+    /** Abonne l'utilisateur à l'utilisateur spécifié */
+    public function ajouterAbonnement($follower): void {
+        self::initialiser();
+
+        $utilisateur = $this->obtenirUtilisateur();
+
+        $requete = self::$bd->prepare(self::SQL_AJOUTER_ABONNEMENT);
+        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':follower', $follower, PDO::PARAM_INT);
+        $requete->execute();
+    }
+
     /** Retourne l'id de l'utilisateur connecté */
     public function obtenirUtilisateur() {
         self::initialiser();
