@@ -30,6 +30,18 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         $requete->execute();
     }
 
+    /** Désabonne l'utilisateur connecté de l'utilisateur spécifié */
+    public function retirerAbonnement($follower): void {
+        self::initialiser();
+
+        $utilisateur = $this->obtenirUtilisateur();
+
+        $requete = self::$bd->prepare(self::SQL_RETIRER_ABONNEMENT);
+        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':follower', $follower, PDO::PARAM_INT);
+        $requete->execute();
+    }
+
     /** Retourne l'id de l'utilisateur connecté */
     public function obtenirUtilisateur() {
         self::initialiser();
