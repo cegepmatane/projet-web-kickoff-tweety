@@ -1,7 +1,7 @@
 <!-- En-tête -->
 <?php require_once('vues/header.php'); ?>
 
-<form action=/index.php>
+<form action=/old.index.php>
     <textarea name="tweet" class="border-solid border-2"></textarea>
     <input type="submit" value="Tweet">
 </form>
@@ -14,9 +14,9 @@
             <td><?=$tweet->getPost()?></td>
             <td><?=$tweet->getDate()?></td>
             <?php if (!$tweet->getSuivi()) { ?>
-                <td><a href="index.php?follow=<?=$tweet->getUid()?>">Follow</a></td>
+                <td><a href="../old.index.php?follow=<?=$tweet->getUid()?>">Follow</a></td>
             <?php } else { ?>
-                <td><a href="index.php?unfollow=<?=$tweet->getUid()?>">Unfollow</a></td>
+                <td><a href="../old.index.php?unfollow=<?=$tweet->getUid()?>">Unfollow</a></td>
             <?php } ?>
         </tr>
     <?php endforeach; ?>
@@ -32,9 +32,9 @@
                 <td><?=$tweet->getPost()?></td>
                 <td><?=$tweet->getDate()?></td>
                 <?php if (!$tweet->getSuivi()) { ?>
-                    <td><a href="index.php?follow=<?=$tweet->getUid()?>">Follow</a></td>
+                    <td><a href="../old.index.php?follow=<?=$tweet->getUid()?>">Follow</a></td>
                 <?php } else { ?>
-                    <td><a href="index.php?unfollow=<?=$tweet->getUid()?>">Unfollow</a></td>
+                    <td><a href="../old.index.php?unfollow=<?=$tweet->getUid()?>">Unfollow</a></td>
                 <?php } ?>
             </tr>
         <?php endforeach; ?>

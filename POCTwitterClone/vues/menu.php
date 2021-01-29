@@ -3,8 +3,8 @@
     <div>
         <ul>
             <li>
-                <a href="index.php" class="mr-2">Accueil</a>
-                <a href="index.php?page=administration" class="mr-2">Administration</a>
+                <a href="" class="mr-2">Accueil</a>
+                <a href="" class="mr-2">Administration</a>
             </li>
         </ul>
     </div>
