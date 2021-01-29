@@ -28,7 +28,8 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete->execute();
 
         $tweet = $requete->fetch(PDO::FETCH_ASSOC);
-        return new Tweet($requete['tid'], $requete['uid'], $requete['post'], $requete['date'], null);
+        $tweet['suivi'] = null;
+        return new Tweet($tweet);
     }
 
     /** Modifie un tweet */

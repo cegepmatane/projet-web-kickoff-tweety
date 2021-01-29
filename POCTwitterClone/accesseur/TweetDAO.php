@@ -25,11 +25,14 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEETS);
         $requete->execute();
 
-        $tweets = $requete->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($tweets as $tweet) {
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tweets = array();
+        foreach ($resultat as $tweet) {
             $suivi = false;
-            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) $suivi = true;
-            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date'], $suivi);
+            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) {
+                $tweet['suivi'] = true;
+            }
+            $tweets[] = new Tweet($tweet);
         }
         return $tweets;
     }
@@ -43,11 +46,12 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
         $requete->execute();
 
-        $tweets = $requete->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($tweets as $tweet) {
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        $tweets = array();
+        foreach ($resultat as $tweet) {
             $suivi = false;
-            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) $suivi = true;
-            $tweets[] = new Tweet($tweet['tid'], $tweet['uid'], $tweet['post'], $tweet['date'], $suivi);
+            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) $tweet['suivi'] = true;
+            $tweets[] = new Tweet($tweet);
         }
         return $tweets;
     }
@@ -84,7 +88,10 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete->execute();
 
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
-        return !($resultat === null);
+        if ($resultat === false) {
+            return false;
+        }
+        return true;
     }
 
     /** Retourne l'id de l'utilisateur connecté */
