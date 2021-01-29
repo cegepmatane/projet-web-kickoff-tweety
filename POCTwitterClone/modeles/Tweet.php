@@ -1,57 +1,54 @@
 <?php
 
 class Tweet {
-    private $_tid;
-    private $_uid;
-    private $_post;
-    private $_date;
-    private $_suivi;
 
-    public function __construct($tid, $uid, $post, $date, $suivi) {
-        $this->_tid = $tid;
-        $this->_uid = $uid;
-        $this->_post = $post;
-        $this->_date = $date;
-        $this->_suivi = $suivi;
+    public static array $filtres = array(
+        'tid' => FILTER_VALIDATE_INT,
+        'uid' => FILTER_VALIDATE_INT,
+        'post' => FILTER_SANITIZE_ENCODED,
+        'date' => FILTER_SANITIZE_STRING,
+        'suivi' => FILTER_VALIDATE_BOOL,
+    );
+
+    protected $tid;
+    protected $uid;
+    protected $post;
+    protected $date;
+    protected $suivi;
+
+    public function __construct($tableau) {
+        $tableau = filter_var_array($tableau, self::$filtres);
+
+        $this->tid = $tableau['tid'];
+        $this->uid = $tableau['uid'];
+        $this->post = $tableau['post'];
+        $this->date = $tableau['date'];
+        $this->suivi = $tableau['suivi'];
     }
 
-    public function getTid() {
-        return $this->_tid;
+    public function __set($propriete, $valeur) {
+        switch ($propriete) {
+            case 'tid':
+                $this->tid = $valeur;
+                break;
+            case 'uid':
+                $this->uid = $valeur;
+                break;
+            case 'post':
+                $this->post = $valeur;
+                break;
+            case 'date':
+                $this->date = $valeur;
+                break;
+            case 'suivi':
+                $this->suivi = $valeur;
+                break;
+        }
     }
 
-    public function getUid() {
-        return $this->_uid;
+    public function __get($propriete) {
+        $self = get_object_vars($this);
+        return $self[$propriete];
     }
 
-    public function getPost() {
-        return $this->_post;
-    }
-
-    public function getDate() {
-        return $this->_date;
-    }
-
-    public function getSuivi() {
-        return $this->_suivi;
-    }
-
-    public function setTid($tid) {
-        $this->_tid = $tid;
-    }
-
-    public function setUid($uid) {
-        $this->_uid = $uid;
-    }
-
-    public function setPost($post) {
-        $this->_post = $post;
-    }
-
-    public function setDate($date) {
-        $this->_date = $date;
-    }
-
-    public function setSuivi($suivi) {
-        $this->_suivi = $suivi;
-    }
 }
