@@ -1,5 +1,5 @@
 <!-- En-tête -->
-<?php require_once('vues/v_header.php'); ?>
+<?php require_once('vues/header.php'); ?>
 
 <form action=/index.php>
     <textarea name="tweet" class="border-solid border-2"><?=$tweet->getPost()?></textarea>
@@ -7,4 +7,4 @@
 </form>
 
 <!--  Pied de page -->
-<?php require_once('vues/v_footer.php');
+<?php require_once('vues/footer.php');

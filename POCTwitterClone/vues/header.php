@@ -11,6 +11,6 @@
         <!-- En-tête -->
         <header></header>
         <!-- Menu -->
-        <?php include('vues/v_menu.php'); ?>
+        <?php include('vues/menu.php'); ?>
         <!-- Vue -->
         <section class="mb-auto">

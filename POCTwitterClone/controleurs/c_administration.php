@@ -7,4 +7,4 @@ $tweetDAO = new TweetDAO();
 $tweets = $tweetDAO->listerTweets();
 
 // Appel de la vue
-require_once ('./vues/v_administration.php');
+require_once('./vues/administration.php');

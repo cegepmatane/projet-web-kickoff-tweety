@@ -15,4 +15,4 @@ if (isset($_GET['tid']) && is_numeric($_GET['tid'])) {
 }
 
 // Appel de la vue
-require_once ('./vues/v_modifier.php');
+require_once('./vues/modifier.php');

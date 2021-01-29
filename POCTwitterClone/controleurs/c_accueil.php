@@ -26,4 +26,4 @@ $tweets = $tweetDAO->listerTweets();
 $tweetsSuivis = $tweetDAO->listerTweetsSuivis();
 
 // Appel de la vue
-require_once ('./vues/v_accueil.php');
+require_once('./vues/accueil.php');
