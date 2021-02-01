@@ -3,24 +3,26 @@
 require_once ('TweetSQL.php');
 require_once ('../modeles/Tweet.php');
 
-class Accesseur {
-    public static $bd = null;
+if (!class_exists('Accesseur')) {
+    class Accesseur {
+        public static $bd = null;
 
-    public static function initialiser(): void {
-        $usager = 'root';
-        $motdepasse = '';
-        $hote = 'localhost';
-        $base = 'poctwitterclone';
-        $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
-        TweetDAO::$bd = new PDO($dsn, $usager, $motdepasse);
-        TweetDAO::$bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        public static function initialiser(): void {
+            $usager = 'root';
+            $motdepasse = '';
+            $hote = 'localhost';
+            $base = 'poctwitterclone';
+            $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
+            TweetDAO::$bd = new PDO($dsn, $usager, $motdepasse);
+            TweetDAO::$bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
     }
 }
 
 class TweetDAO extends Accesseur implements TweetSQL {
 
     /** Retourne un array de tous les tweets */
-    public function listerTweets(): array {
+    public static function listerTweets(): array {
         self::initialiser();
         $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEETS);
         $requete->execute();
@@ -29,7 +31,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $tweets = array();
         foreach ($resultat as $tweet) {
             $suivi = false;
-            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) {
+            if (self::estUnFollower(self::obtenirUtilisateur(), $tweet['uid'])) {
                 $tweet['suivi'] = true;
             }
             $tweets[] = new Tweet($tweet);
@@ -38,8 +40,8 @@ class TweetDAO extends Accesseur implements TweetSQL {
     }
 
     /** Retourne un array des tweets des utilisateurs suivis */
-    public function listerTweetsSuivis($utilisateur = false): array {
-        if ($utilisateur === false) $utilisateur = $this->obtenirUtilisateur();
+    public static function listerTweetsSuivis($utilisateur = false): array {
+        if ($utilisateur === false) $utilisateur = self::obtenirUtilisateur();
 
         self::initialiser();
         $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEETS_SUIVIS);
@@ -50,18 +52,18 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $tweets = array();
         foreach ($resultat as $tweet) {
             $suivi = false;
-            if ($this->estUnFollower($this->obtenirUtilisateur(), $tweet['uid'])) $tweet['suivi'] = true;
+            if (self::estUnFollower(self::obtenirUtilisateur(), $tweet['uid'])) $tweet['suivi'] = true;
             $tweets[] = new Tweet($tweet);
         }
         return $tweets;
     }
 
     /** Ajoute un tweet */
-    public function ajouterTweet($tweet): void {
+    public static function ajouterTweet($tweet): void {
         self::initialiser();
 
         // Si l'utilisateur qui tweete n'existe pas, le créer
-        $utilisateur = $this->obtenirUtilisateur();
+        $utilisateur = self::obtenirUtilisateur();
         if (!$utilisateur) {
             $ip = $_SERVER['REMOTE_ADDR'];
             $requete = self::$bd->prepare(self::SQL_AJOUTER_UTILISATEUR);
@@ -79,7 +81,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
     }
 
     /** Retourne true si l'utilisateur suit l'autre utilisateur sinon false*/
-    public function estUnFollower($utilisateur, $follower): bool {
+    public static function estUnFollower($utilisateur, $follower): bool {
         self::initialiser();
 
         $requete = self::$bd->prepare(self::SQL_EST_UN_FOLLOWER);
@@ -95,7 +97,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
     }
 
     /** Retourne l'id de l'utilisateur connecté */
-    public function obtenirUtilisateur() {
+    public static function obtenirUtilisateur() {
         self::initialiser();
 
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -110,7 +112,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
     /** ADMINISTRATION */
 
     /** Retourne un tweet */
-    public function detaillerTweet($tid) {
+    public static function detaillerTweet($tid) {
         self::initialiser();
 
         $requete = self::$bd->prepare(self::SQL_DETAILLER_TWEET);
@@ -123,7 +125,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
     }
 
     /** Modifie un tweet */
-    public function modifierTweet($tid, $post): void {
+    public static function modifierTweet($tid, $post): void {
         self::initialiser();
 
         $requete = self::$bd->prepare(self::SQL_MODIFIER_TWEET);
@@ -133,7 +135,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
     }
 
     /** Supprime un tweet */
-    public function supprimerTweet($tid): void {
+    public static function supprimerTweet($tid): void {
         self::initialiser();
 
         $requete = self::$bd->prepare(self::SQL_SUPPRIMER_TWEET);
