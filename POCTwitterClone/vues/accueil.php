@@ -18,7 +18,7 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
             <?php if (!$tweet->suivi) { ?>
                 <td><a href="../action/follow.php?uid=<?=$tweet->uid?>">Follow</a></td>
             <?php } else { ?>
-                <td><a href="">Unfollow</a></td>
+                <td><a href="../action/unfollow.php?uid=<?=$tweet->uid?>">Unfollow</a></td>
             <?php } ?>
         </tr>
     <?php endforeach; ?>
@@ -33,9 +33,9 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
                 <td><?=$tweet->uid?></td>
                 <td><?=$tweet->post?></td>
                 <?php if (!$tweet->suivi) { ?>
-                    <td><a href="">Follow</a></td>
+                    <td><a href="../action/follow.php?uid=<?=$tweet->uid?>">Follow</a></td>
                 <?php } else { ?>
-                    <td><a href="">Unfollow</a></td>
+                    <td><a href="../action/unfollow.php?uid=<?=$tweet->uid?>">Unfollow</a></td>
                 <?php } ?>
             </tr>
         <?php endforeach; ?>
