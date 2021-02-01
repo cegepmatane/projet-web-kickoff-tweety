@@ -1,5 +1,5 @@
 <!-- En-tête -->
-<?php require_once('vues/header.php'); ?>
+<?php require_once('header.php'); ?>
 
 <!-- Affichage tweets -->
 <table class="mt-5 table-auto">
@@ -15,4 +15,4 @@
 </table>
 
 <!--  Pied de page -->
-<?php require_once('vues/footer.php');
+<?php require_once('footer.php');

@@ -8,4 +8,10 @@ interface TweetSQL {
     public const SQL_EST_UN_FOLLOWER = "select follower from follows where uid=:uid and follower=:follower";
     public const SQL_OBTENIR_UTILISATEUR = "select uid from utilisateurs where ip=:ip";
     public const SQL_AJOUTER_UTILISATEUR = "insert into utilisateurs(ip) values (:ip)";
+
+    /** ADMINISTRATION */
+
+    public const SQL_DETAILLER_TWEET = "select * from tweets where tid=:tid";
+    public const SQL_MODIFIER_TWEET = "update tweets set post=:post where tid=:tid";
+    public const SQL_SUPPRIMER_TWEET = "delete from tweets where tid=:tid";
 }
