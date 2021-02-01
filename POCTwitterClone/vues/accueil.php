@@ -4,10 +4,8 @@
 <?php
 require_once ('../accesseur/TweetDAO.php');
 
-$tweetDAO = new TweetDAO();
-
-$tweets = $tweetDAO->listerTweets();
-$tweetsSuivis = $tweetDAO->listerTweetsSuivis();
+$tweets = TweetDAO::listerTweets();
+$tweetsSuivis = TweetDAO::listerTweetsSuivis();
 ?>
 
 <!-- Affichage tweets -->
@@ -18,7 +16,7 @@ $tweetsSuivis = $tweetDAO->listerTweetsSuivis();
             <td><?=$tweet->post?></td>
             <td><?=$tweet->date?></td>
             <?php if (!$tweet->suivi) { ?>
-                <td><a href="">Follow</a></td>
+                <td><a href="../action/follow.php?uid=<?=$tweet->uid?>">Follow</a></td>
             <?php } else { ?>
                 <td><a href="">Unfollow</a></td>
             <?php } ?>
