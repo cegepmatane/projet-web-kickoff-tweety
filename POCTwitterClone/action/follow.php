@@ -7,4 +7,3 @@ if (!empty($_GET['uid'])) {
     UtilisateurDAO::ajouterAbonnement($_GET['uid']);
 }
 
-require_once('../vues/accueil.php');

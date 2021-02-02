@@ -2,11 +2,11 @@
 <?php require_once('header.php'); ?>
 
 <?php
-require_once ('../accesseur/TweetDAO.php');
+require_once('accesseur/TweetDAO.php');
 
 $tweetDAO = new TweetDAO();
 
-$tweets = $tweetDAO->listerTweets();
+$tweets = TweetDAO::listerTweets();
 ?>
 
 <!-- Affichage tweets -->

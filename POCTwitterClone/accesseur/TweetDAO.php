@@ -1,7 +1,7 @@
 <?php
 
 require_once ('TweetSQL.php');
-require_once ('../modeles/Tweet.php');
+require_once ('modeles/Tweet.php');
 
 if (!class_exists('Accesseur')) {
     class Accesseur {
