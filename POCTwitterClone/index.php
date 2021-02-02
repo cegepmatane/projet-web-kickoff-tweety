@@ -28,7 +28,14 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
                     </form>
                 </td>
             <?php } else { ?>
-                <td><a href="action/unfollow.php?uid=<?=$tweet->uid?>">Unfollow</a></td>
+                <td>
+                    <form action="" method="post">
+                        <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
+                        <div>
+                            <input type="submit" name="action-unfollow" value="Unfollow"/>
+                        </div>
+                    </form>
+                </td>
             <?php } ?>
         </tr>
     <?php endforeach; ?>
@@ -43,9 +50,23 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
                 <td><?=$tweet->uid?></td>
                 <td><?=$tweet->post?></td>
                 <?php if (!$tweet->suivi) { ?>
-                    <td><a href="action/follow.php?uid=<?=$tweet->uid?>">Follow</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
+                            <div>
+                                <input type="submit" name="action-follow" value="Follow"/>
+                            </div>
+                        </form>
+                    </td>
                 <?php } else { ?>
-                    <td><a href="action/unfollow.php?uid=<?=$tweet->uid?>">Unfollow</a></td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
+                            <div>
+                                <input type="submit" name="action-unfollow" value="Unfollow"/>
+                            </div>
+                        </form>
+                    </td>
                 <?php } ?>
             </tr>
         <?php endforeach; ?>
