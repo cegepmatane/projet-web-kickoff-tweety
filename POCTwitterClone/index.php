@@ -5,11 +5,17 @@
 require_once ('accesseur/UtilisateurDAO.php');
 require_once ('accesseur/TweetDAO.php');
 
-require_once ('action/gerer-follow.php');
+require_once('action/gerer-accueil.php');
 
 $tweets = TweetDAO::listerTweets();
 $tweetsSuivis = TweetDAO::listerTweetsSuivis();
 ?>
+
+<!-- Tweeter -->
+<form action="" method="post">
+    <textarea name="tweet" class="border-solid border-2"></textarea>
+    <input type="submit" name="action-tweeter" value="Tweet">
+</form>
 
 <!-- Affichage tweets -->
 <table class="mt-5 table-auto">

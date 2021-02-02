@@ -75,7 +75,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $date = Date("Y-m-d H:i:s");
         $requete = self::$bd->prepare(self::SQL_AJOUTER_TWEET);
         $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
-        $requete->bindParam(':post', $tweet, PDO::PARAM_STR);
+        $requete->bindParam(':tweet', $tweet, PDO::PARAM_STR);
         $requete->bindParam(':date', $date, PDO::PARAM_STR);
         $requete->execute();
     }
