@@ -1,8 +1,10 @@
 <!-- En-tête -->
-<?php require_once('header.php'); ?>
+<?php require_once ('header.php'); ?>
 
 <?php
-require_once('accesseur/TweetDAO.php');
+require_once ('accesseur/TweetDAO.php');
+
+require_once ('action/gerer-administration.php');
 
 $tweetDAO = new TweetDAO();
 
@@ -17,7 +19,14 @@ $tweets = TweetDAO::listerTweets();
             <td><?=$tweet->post?></td>
             <td><?=$tweet->date?></td>
             <td><a href="">Modifier</a></td>
-            <td><a href="">Supprimer</a></td>
+            <td>
+                <form action="" method="post">
+                    <input type="hidden" name="tid" value="<?=$tweet->tid?>"/>
+                    <div>
+                        <input type="submit" name="action-supprimer" value="Supprimer"/>
+                    </div>
+                </form>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>

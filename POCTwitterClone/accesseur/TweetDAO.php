@@ -140,7 +140,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
 
         $requete = self::$bd->prepare(self::SQL_SUPPRIMER_TWEET);
         $requete->bindParam(':tid', $tid, PDO::PARAM_INT);
-        $requete->excute();
+        $requete->execute();
     }
 
 }
