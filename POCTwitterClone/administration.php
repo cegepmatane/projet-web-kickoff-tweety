@@ -18,7 +18,7 @@ $tweets = TweetDAO::listerTweets();
             <td><?=$tweet->uid?></td>
             <td><?=$tweet->post?></td>
             <td><?=$tweet->date?></td>
-            <td><a href="">Modifier</a></td>
+            <td><a href="modifier.php?tid=<?=$tweet->tid?>">Modifier</a></td>
             <td>
                 <form action="" method="post">
                     <input type="hidden" name="tid" value="<?=$tweet->tid?>"/>
