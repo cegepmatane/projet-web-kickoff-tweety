@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/accesseur/TweetSQL.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/accesseur/UtilisateurSQL.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/administration/accesseur/TweetSQL.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/donnees/DAO.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/donnees/TweetDAO.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/donnees/UtilisateurDAO.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/old.index.php" dialect="GenericSQL" />
+  </component>
+</project>
