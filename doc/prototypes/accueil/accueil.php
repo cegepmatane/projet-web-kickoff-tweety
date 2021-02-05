@@ -35,12 +35,12 @@
     <!-- Menu -->
         <nav>
             <ul id="menu">
-                <li><a>Tweety</a></li>
-                <li><a href="">Accueil</a></li>
-                <li><a href="">Suivis</a></li>
-                <li><a href="">Profil</a></li>
-                <li><a href="">Administration</a></li>
-                <li><a href="">Déconnexion</a></li>
+                <li><a class="menu-item">Tweety</a></li>
+                <li><a class="menu-item" href="">Accueil</a></li>
+                <li><a class="menu-item" href="">Suivis</a></li>
+                <li><a class="menu-item" href="">Profil</a></li>
+                <li><a class="menu-item" href="">Administration</a></li>
+                <li><a class="action" href="">Déconnexion</a></li>
             </ul>
         </nav>
 
@@ -49,7 +49,7 @@
         <!-- Tweeter -->
         <form action="" method="post">
             <textarea name="tweet"></textarea>
-            <input type="submit" name="action-tweeter" value="Tweet">
+            <input class="action" type="submit" name="action-tweeter" value="Tweet">
         </form>
 
         <!-- Affichage tweets -->
@@ -64,7 +64,7 @@
                     <form action="" method="post">
                         <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
                         <div>
-                            <input type="submit" name="action-follow" value="Follow"/>
+                            <input class="action" type="submit" name="action-follow" value="Follow"/>
                         </div>
                     </form>
                 </div>
@@ -73,7 +73,7 @@
                     <form action="" method="post">
                         <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
                         <div>
-                            <input type="submit" name="action-unfollow" value="Unfollow"/>
+                            <input class="action" type="submit" name="action-unfollow" value="Unfollow"/>
                         </div>
                     </form>
                 </div>
