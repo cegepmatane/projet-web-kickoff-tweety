@@ -65,7 +65,7 @@
                     <form action="" method="post">
                         <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
                         <div>
-                            <input class="action suivre" type="submit" name="action-follow" value="Follow"/>
+                            <input class="action follow" type="submit" name="action-follow" value="Follow"/>
                         </div>
                     </form>
                 </div>

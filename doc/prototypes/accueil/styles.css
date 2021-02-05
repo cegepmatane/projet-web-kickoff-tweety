@@ -47,6 +47,13 @@ body {
     font-weight: 600;
 }
 
+.follow {
+    color: #1A91DA;
+    background-color: #000000;
+    border-style: solid;
+    border-color: #1A91DA;
+}
+
 section {
     display: flex;
     width: 100%;
