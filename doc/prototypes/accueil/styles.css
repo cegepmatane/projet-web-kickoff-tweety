@@ -142,3 +142,12 @@ section .tweet:last-child {
 .tweet div:last-child {
     width: 100%;
 }
+
+/* Footer */
+
+footer {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.2%;
+    justify-content: center;
+}
