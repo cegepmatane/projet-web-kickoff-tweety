@@ -1,3 +1,28 @@
-html {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
 
+#menu {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu li:first-child {
+    margin-right: auto;
+}
+
+#menu li:last-child {
+    margin-left: auto;
+}
+
+#menu li a {
+    margin: 0 1vh;
+    padding: 1vh;
+    border-radius: 5px;
 }

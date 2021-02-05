@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device, initial-scale=1.0">
+    <title>Tweety | Accueil</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
 <?php
 
     require_once ('Tweet.php');
@@ -17,34 +28,21 @@
 
 ?>
 
-<!DOCTYPE html>
-
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device, initial-scale=1.0">
-    <title>Tweety | Accueil</title>
-
-    <link rel="stylesheet" href="styles.css">
-</head>
 <body>
     <!-- En-tête -->
     <header></header>
 
     <!-- Menu -->
-    <nav class="mb-5 flex flex-row">
-        <div>
-            <ul>
-                <li>
-                    <a href="">Accueil</a>
-                    <a href="">Suivis</a>
-                    <a href="">Profil</a>
-                    <a href="">Administration</a>
-                    <a href="">Déconnexion</a>
-                </li>
+        <nav>
+            <ul id="menu">
+                <li><a>Tweety</a></li>
+                <li><a href="">Accueil</a></li>
+                <li><a href="">Suivis</a></li>
+                <li><a href="">Profil</a></li>
+                <li><a href="">Administration</a></li>
+                <li><a href="">Déconnexion</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
 
     <!-- Page accueil -->
     <section>
