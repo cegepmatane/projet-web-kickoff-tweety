@@ -47,16 +47,17 @@
     <!-- Page accueil -->
     <section>
         <!-- Tweeter -->
-        <form action="" method="post">
-            <textarea name="tweet"></textarea>
+        <form id="formulaire-tweet" action="" method="post">
+            <textarea name="tweet" placeholder="Quoi de neuf ?"></textarea>
             <input class="action" type="submit" name="action-tweeter" value="Tweet">
         </form>
+    </section>
 
+    <section>
         <!-- Affichage tweets -->
         <div id="tweets">
             <?php foreach ($tweets as $tweet): ?>
             <div class="tweet">
-                <div><?=$tweet->uid?></div>
                 <div><?=$tweet->post?></div>
                 <div><?=$tweet->date?></div>
                 <?php if (!$tweet->suivi) { ?>
@@ -64,7 +65,7 @@
                     <form action="" method="post">
                         <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
                         <div>
-                            <input class="action" type="submit" name="action-follow" value="Follow"/>
+                            <input class="action suivre" type="submit" name="action-follow" value="Follow"/>
                         </div>
                     </form>
                 </div>
