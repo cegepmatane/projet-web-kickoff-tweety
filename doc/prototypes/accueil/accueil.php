@@ -14,7 +14,7 @@
     require_once ('Tweet.php');
 
     $tweets = array();
-    for ($i=0;$i<3;$i++) {
+    for ($i=0;$i<5;$i++) {
         for ($j=0;$j<2;$j++) {
             $tweets[] = new Tweet(array(
                 'tid' => $i+$j,
@@ -35,7 +35,7 @@
     <!-- Menu -->
         <nav>
             <ul id="menu">
-                <li><a class="menu-item">Tweety</a></li>
+                <li><a class="menu-item">tweety.</a></li>
                 <li><a class="menu-item" href="">Accueil</a></li>
                 <li><a class="menu-item" href="">Suivis</a></li>
                 <li><a class="menu-item" href="">Profil</a></li>
@@ -58,8 +58,7 @@
         <div id="tweets">
             <?php foreach ($tweets as $tweet): ?>
             <div class="tweet">
-                <div><?=$tweet->post?></div>
-                <div><?=$tweet->date?></div>
+                <div>Utilisateur</div>
                 <?php if (!$tweet->suivi) { ?>
                 <div>
                     <form action="" method="post">
@@ -79,6 +78,8 @@
                     </form>
                 </div>
                 <?php } ?>
+                <div><?=$tweet->date?></div>
+                <div><?=$tweet->post?></div>
             </div>
             <?php endforeach; ?>
         </div>
