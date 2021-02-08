@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 27 jan. 2021 à 16:00
+-- Généré le : lun. 08 fév. 2021 à 14:18
 -- Version du serveur :  10.4.17-MariaDB
--- Version de PHP : 7.4.14
+-- Version de PHP : 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `poctwitterclone`
+-- Base de données : `tweety`
 --
 
 -- --------------------------------------------------------
@@ -37,7 +37,9 @@ CREATE TABLE `follows` (
 --
 
 INSERT INTO `follows` (`uid`, `follower`) VALUES
-(1, 1);
+(0, 26),
+(1, 1),
+(1, 26);
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,13 @@ CREATE TABLE `tweets` (
 INSERT INTO `tweets` (`tid`, `uid`, `post`, `date`) VALUES
 (26, 26, 'ngrfgns', '2021-01-21 00:59:38'),
 (27, 1, 'tester', '2021-01-22 15:21:36'),
-(33, 1, 'tester', '2021-01-27 15:06:18');
+(41, 1, 'Ceci est un test de tweet', '2021-02-03 14:27:25'),
+(43, 1, 'Ceci est un nouveau tweet de la part de Yann', '2021-02-05 16:03:12'),
+(44, 0, 'Salut (Je suis le premier tweet de Thomas)', '2021-02-05 11:14:54'),
+(46, 1, 'Test de tweet', '2021-02-05 17:26:13'),
+(47, 1, 'Nouveau tweet de Tilodry', '2021-02-05 11:36:44'),
+(51, 34, 'segdrhdrb fhfh', '2021-02-08 13:51:28'),
+(52, 1, 'segdrhdrb fhfh', '2021-02-08 13:52:14');
 
 -- --------------------------------------------------------
 
@@ -69,16 +77,20 @@ INSERT INTO `tweets` (`tid`, `uid`, `post`, `date`) VALUES
 
 CREATE TABLE `utilisateurs` (
   `uid` int(11) NOT NULL,
-  `ip` varchar(64) DEFAULT NULL
+  `biographie` varchar(255) DEFAULT NULL,
+  `pseudonyme` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`uid`, `ip`) VALUES
-(1, '127.0.0.1'),
-(26, '127.0.0.2');
+INSERT INTO `utilisateurs` (`uid`, `biographie`, `pseudonyme`) VALUES
+(0, 'Ceci est la biographie de Thomas', 'Thomas'),
+(1, 'Ceci est ma biographie, je suis Yann Roubeau aka Tilodry', 'Tilodry'),
+(26, 'Biographie par défaut', 'Lucas'),
+(33, 'Bio de Yann', 'Yann'),
+(34, 'YOHANNNNNNNNNNNNNNNNNNNNNNNN', 'Yohann');
 
 --
 -- Index pour les tables déchargées
@@ -102,8 +114,7 @@ ALTER TABLE `tweets`
 -- Index pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `ip` (`ip`);
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -113,13 +124,13 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `tweets`
 --
 ALTER TABLE `tweets`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
