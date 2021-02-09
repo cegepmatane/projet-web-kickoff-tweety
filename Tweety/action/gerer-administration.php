@@ -5,5 +5,5 @@ if (!empty($_POST['action-supprimer']) && !empty($_POST['tid'])) {
 }
 
 if (!empty($_POST['action-modifier'])) {
-    require_once ('modifier.php');
+    require_once ('modifierTweety.php');
 }

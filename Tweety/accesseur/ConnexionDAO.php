@@ -7,7 +7,7 @@ if (!class_exists('Accesseur')) {
 
         public static function initialiser(): void {
             $usager = 'root';
-            $motdepasse = '';
+            $motdepasse = 'yohann59';
             $hote = 'localhost';
             $base = 'tweety';
             $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
@@ -22,14 +22,14 @@ class ConnexionDAO extends Accesseur implements ConnexionSQL {
     /** Supprime un tweet */
     public static function connexion($uid): void {
         self::initialiser();
-
         $requete = self::$bd->prepare(self::SQL_CONNEXION); // Retourne True ou False
         $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
         $requete->execute();
 
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
         if ($resultat === false) {
-            header("Location: inscription.php");
+        var_dump($resultat);
+	header("Location: inscription.php");
             return;
         }
         setcookie("user", $uid, time() + (86400 * 2), "/");

@@ -9,7 +9,7 @@ if (!class_exists('Accesseur')) {
 
         public static function initialiser(): void {
             $usager = 'root';
-            $motdepasse = '';
+            $motdepasse = 'yohann59';
             $hote = 'localhost';
             $base = 'tweety';
             $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
