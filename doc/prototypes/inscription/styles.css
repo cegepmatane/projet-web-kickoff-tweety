@@ -73,7 +73,7 @@ section {
 #formulaire-tweet {
     display: flex;
     flex-direction: column;
-    width: 25%;
+  
     height: 15vh;
 }
 
