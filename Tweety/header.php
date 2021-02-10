@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device, initial-scale=1.0">
-        <title>Twitter Clone</title>
+        <title>Tweety | Accueil</title>
 
-        <link rel="stylesheet" href="public/styles.css">
+        <link rel="stylesheet" href="decoration/style.css">
     </head>
-    <body class="px-3 flex flex-col h-screen justify-between">
+    <body>
         <!-- En-tête -->
         <header></header>
         <!-- Connexion -->
@@ -16,5 +16,4 @@
         } ?>
         <!-- Menu -->
         <?php include('menu.php'); ?>
-        <!-- Vue -->
-        <section class="mb-auto">
+    

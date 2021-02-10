@@ -8,7 +8,7 @@ if (!class_exists('Accesseur')) {
         public static function initialiser(): void {
             $usager = 'root';
             $motdepasse = '';
-            $hote = 'localhost';
+            $hote = '';
             $base = 'tweety';
             $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
             InscriptionDAO::$bd = new PDO($dsn, $usager, $motdepasse);

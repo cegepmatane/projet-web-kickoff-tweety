@@ -11,63 +11,45 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
 ?>
 
 <!-- Tweeter -->
-<form action="" method="post">
-    <textarea name="tweet" class="border-solid border-2"></textarea>
-    <input type="submit" name="action-tweeter" value="Tweet">
-</form>
+<section>
+    <form id="formulaire-tweet" action="" method="post">
+        <textarea name="tweet" placeholder="Quoi de neuf ?"></textarea>
+        <input class="action" type="submit" name="action-tweeter" value="Tweet">
+    </form>
+</section>
 
-<!-- Affichage tweets -->
-<h2 class="mt-5 mb-1 text-2xl">Feed de Tweety</h2>
-<table class="table-auto">
-    <?php foreach ($tweets as $tweet): ?>
-        <tr>
-            <td><a href=" " title="<?= UtilisateurDAO::obtenirBiographie($tweet->uid)?>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;cursor:help;"><?=UtilisateurDAO::obtenirPseudonyme($tweet->uid)?></a></td>
-            <td><?=$tweet->post?></td>
-            <td><?=$tweet->date?></td>
-            <?php if(TweetDAO::estUnFollower(TweetDAO::obtenirUtilisateur(),$tweet->uid)) { ?>
-                <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                        <div>
-                            <input type="submit" name="action-unfollow" value="Unfollow"/>
-                        </div>
-                    </form>
-                </td>
-            <?php } else { ?>
-                <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                        <div>
-                            <input type="submit" name="action-follow" value="Follow"/>
-                        </div>
-                    </form>
-                </td>
-            <?php } ?>
-        </tr>
-    <?php endforeach; ?>
-</table>
 
-<?php if ($tweetsSuivis) { ?>
-    <!-- Affichage tweets suivis -->
-    <h2 class="mt-5 mb-1 text-2xl">Tweets des utilisateurs suivis</h2>
-    <table class="table-auto">
-        <?php foreach ($tweetsSuivis as $tweet): ?>
-            <tr>
-                <td><a href=" " title="<?= UtilisateurDAO::obtenirBiographie($tweet->uid)?>" style="background-color:#FFFFFF;color:#000000;text-decoration:none;cursor:help;"><?=UtilisateurDAO::obtenirPseudonyme($tweet->uid)?></a></td>
-                <td><?=$tweet->post?></td>
-                <td><?=$tweet->date?></td>
-                <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                        <div>
-                            <input type="submit" name="action-unfollow" value="Unfollow"/>
-                        </div>
-                    </form>
-                </td>
-            </tr>
+<section>
+    <!-- Affichage tweets -->
+    <div id="tweets">
+        <?php foreach ($tweets as $tweet): ?>
+            <div class="tweet">
+                <div>Utilisateur</div>
+                <?php if(TweetDAO::estUnFollower(TweetDAO::obtenirUtilisateur(),$tweet->uid)) { ?>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
+                            <div>
+                                <input class="action follow" type="submit" name="action-unfollow" value="Unfollow"/>
+                            </div>
+                        </form>
+                    </td>
+                <?php } else { ?>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
+                            <div>
+                                <input class="action follow" type="submit" name="action-follow" value="Follow"/>
+                            </div>
+                        </form>
+                    </td>
+                <?php } ?>
+                <div><?=$tweet->date?></div>
+                <div><?=$tweet->post?></div>
+            </div>
         <?php endforeach; ?>
-    </table>
-<?php } ?>
+    </div>
+</section>
 
 <!--  Pied de page -->
 <?php require_once('footer.php');
