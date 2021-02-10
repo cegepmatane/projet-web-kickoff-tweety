@@ -1,5 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device, initial-scale=1.0">
+    <title>Tweety | Administration</title>
+
+    <link rel="stylesheet" href="decoration/administration.css">
+</head>
+<body>
 <!-- En-tête -->
-<?php require_once ('header.php'); ?>
+<header></header>
+<!-- Connexion -->
+<?php if(!isset($_COOKIE["user"])) {
+    header("Location: connexion.php");
+} ?>
+<!-- Menu -->
+<?php include('menu.php'); ?>
 
 <?php
 require_once ('accesseur/TweetDAO.php');
@@ -12,35 +28,35 @@ $tweetDAO = new TweetDAO();
 $tweets = TweetDAO::listerTweets();
 ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="decoration/styles2.css">
-</head>
-
 <section>
     <div id="tweets">
         <!-- Affichage tweets -->
-        <table>
-            
-            <?php foreach ($tweets as $tweet): ?>
-                <div class="tweet">
+        <?php foreach ($tweets as $tweet): ?>
+            <div class="tweet">
+                <div>
                     <td><a href=" " title="<?= UtilisateurDAO::obtenirBiographie($tweet->uid)?>"><?=UtilisateurDAO::obtenirPseudonyme($tweet->uid)?></a></td>
+                </div>
+                <div>
                     <td><?=$tweet->post?></td>
+                </div>
+                <div>
                     <td><?=$tweet->date?></td>
-                    <td><a class="action" href="modifier.php?tid=<?=$tweet->tid?>">Modifier</a></td>
+                </div>
+                <div>
+                    <td><a class="action bouton1" href="modifier.php?tid=<?=$tweet->tid?>">Modifier</a></td>
+                </div>
+                <div>
                     <td>
                         <form action="" method="post">
                             <input type="hidden" name="tid" value="<?=$tweet->tid?>"/>
                             <div>
-                                <input type="submit" class="action" name="action-supprimer" value="Supprimer"/>
+                                <input type="submit" class="action bouton1" name="action-supprimer" value="Supprimer"/>
                             </div>
                         </form>
                     </td>
-                </div>            
-            <?php endforeach; ?>
-            
-        </table>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
 </section>
 <!--  Pied de page -->
