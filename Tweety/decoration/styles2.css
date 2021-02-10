@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    resize: none;
+    color: #D9D9D9;
+    font-family: "Helvetica", serif;
+}
+
+body {
+    background-color: #000000;
+    font-size: 2.2vh;
+}
+
+/* Menu */
+
+#menu {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A91DA;
+}
+
+/* Tweety */
+#menu li:first-child {
+    margin-right: auto;
+    font-size: 3vh;
+}
+
+/* Déconnexion */
+#menu li:last-child {
+    margin-left: auto;
+}
+
+.menu-item {
+    margin: 0 0.6vw;
+    padding: 1vw;
+    background-color: #6B6B6B;
+    border-radius: 1rem;
+    
+}
+
+/* Boutons */
+
+.bouton-admin 
+{
+    margin-left: 55rem;   
+}
+
+.action {
+    display: block;
+    text-align: center;
+    padding: 0.4vw 1.5vw 0.4vw 1.5vw;
+    border-radius: 1rem;
+    border-style: none;
+    color: white;
+    background-color: #1A91DA;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 2.2vh;
+}
+
+.follow {
+    color: #1A91DA;
+    background-color: #000000;
+    border-style: solid;
+    border-color: #1A91DA;
+}
+
+section {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 2% 0;
+}
+
+/* Section formulaire */
+
+#formulaire-tweet {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+#formulaire-tweet textarea {
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    background-color: #000000;
+}
+
+#formulaire-tweet textarea::placeholder {
+    font-size: 2.2vh;
+}
+
+#formulaire-tweet .action {
+    margin-left: auto;
+}
+
+#tweets {
+    height: 80vh;
+    width: 65%;
+    overflow-y: scroll;
+
+	border-right-width: 8px;
+	margin: 4px;;
+    border-style: solid;
+    border-width: 0.2vh 0 0.2vh 0.2vh;
+    border-color: #444444;
+}
+
+/*Scroll bard*/
+section ::-webkit-scrollbar 
+{									
+	width: 1rem;
+	height: 1rem;
+	background: #00ddfa 0 0 repeat;
+}
+
+/*Fond de la barre*/
+::-webkit-scrollbar-track-piece 
+{						
+	background: transparent none;
+	border: solid 4px transparent;
+	border-right-width: 8px;
+	margin: 4px;
+	/*-webkit-box-shadow: inset 1px 1px 0 0 rgb(137,131,117), inset -1px -1px 0 0 rgb(224,220,210);*/
+}
+
+::-webkit-scrollbar-thumb 
+{								/* Barre */
+	border: solid 0 transparent;
+    border-left-width: 6px;
+	border-right-width: 6px;
+	-webkit-border-radius: 5px;
+	-webkit-border-top-right-radius: 3px 2px;
+	-webkit-border-bottom-right-radius: 3px 2px;
+	-webkit-box-shadow: inset 0 0 0 1px #ffff, inset 0 0 0 6px #ffff;
+}
+
+/* Section tweets */
+
+.tweet {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 1%;
+    border-style: solid;
+    border-width: 0 0 0.2vh 0;
+    border-color: #444444;
+}
+
+section .tweet:last-child {
+    border-width: 0;
+}
+
+.tweet
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+
+.tweet td
+{
+    margin:0 10%;
+    
+}
+
+.tweet div {
+    margin: 0 1% 0 0;
+}
+
+ /* Nom d'utilisateur */
+.tweet div:first-child {
+    font-weight: bold;
+}
+
+/* Bouton follow/unfollow */
+.tweet .action {
+}
+
+/* Date */
+.tweet div:nth-child(3) {
+    margin-left: auto;
+    font-size: 1.5vh;
+}
+
+/* Tweet */
+.tweet div:last-child {
+    width: 100%;
+}
+
+/* Footer */
+
+footer {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.2%;
+    justify-content: center;
+}
