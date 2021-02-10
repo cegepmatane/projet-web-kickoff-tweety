@@ -23,6 +23,7 @@ body {
     height: 10vh;
     justify-content: center;
     align-items: center;
+    background-color: #1A91DA;
 }
 
 /* Tweety */
@@ -39,9 +40,17 @@ body {
 .menu-item {
     margin: 0 0.6vw;
     padding: 1vw;
+    background-color: #6B6B6B;
+    border-radius: 1rem;
+    
 }
 
 /* Boutons */
+
+.bouton-admin 
+{
+    margin-left: 55rem;   
+}
 
 .action {
     display: block;
@@ -97,9 +106,41 @@ section {
     height: 80vh;
     width: 65%;
     overflow-y: scroll;
+
+	border-right-width: 8px;
+	margin: 4px;;
     border-style: solid;
     border-width: 0.2vh 0 0.2vh 0.2vh;
     border-color: #444444;
+}
+
+/*Scroll bard*/
+::-webkit-scrollbar 
+{									
+	width: 1rem;
+	height: 1rem;
+	background: #00ddfa 0 0 repeat;
+}
+
+/*Fond de la barre*/
+::-webkit-scrollbar-track-piece 
+{						
+	background: transparent none;
+	border: solid 4px transparent;
+	border-right-width: 8px;
+	margin: 4px;
+	/*-webkit-box-shadow: inset 1px 1px 0 0 rgb(137,131,117), inset -1px -1px 0 0 rgb(224,220,210);*/
+}
+
+::-webkit-scrollbar-thumb 
+{								/* Barre */
+	border: solid 0 transparent;
+    border-left-width: 6px;
+	border-right-width: 6px;
+	-webkit-border-radius: 5px;
+	-webkit-border-top-right-radius: 3px 2px;
+	-webkit-border-bottom-right-radius: 3px 2px;
+	-webkit-box-shadow: inset 0 0 0 1px #ffff, inset 0 0 0 6px #ffff;
 }
 
 /* Section tweets */

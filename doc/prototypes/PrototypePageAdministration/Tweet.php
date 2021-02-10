@@ -7,12 +7,14 @@ class Tweet {
         'uid' => FILTER_VALIDATE_INT,
         'post' => FILTER_SANITIZE_STRING,
         'date' => FILTER_SANITIZE_STRING,
+        'suivi' => FILTER_VALIDATE_BOOLEAN,
     );
 
     protected $tid;
     protected $uid;
     protected $post;
     protected $date;
+    protected $suivi;
 
     public function __construct($tableau) {
         $tableau = filter_var_array($tableau, self::$filtres);
@@ -21,6 +23,7 @@ class Tweet {
         $this->uid = $tableau['uid'];
         $this->post = $tableau['post'];
         $this->date = $tableau['date'];
+        $this->suivi = $tableau['suivi'];
     }
 
     public function __set($propriete, $valeur) {
@@ -36,6 +39,9 @@ class Tweet {
                 break;
             case 'date':
                 $this->date = $valeur;
+                break;
+            case 'suivi':
+                $this->suivi = $valeur;
                 break;
         }
     }

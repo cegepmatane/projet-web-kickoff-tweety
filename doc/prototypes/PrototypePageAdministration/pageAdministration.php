@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Tweety | Accueil</title>
 
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    
 </head>
 
 <?php
@@ -14,7 +15,7 @@
     require_once ('Tweet.php');
 
     $tweets = array();
-    for ($i=0;$i<2;$i++) {
+    for ($i=0;$i<3;$i++) {
         for ($j=0;$j<2;$j++) {
             $tweets[] = new Tweet(array(
                 'tid' => $i+$j,
@@ -35,7 +36,7 @@
     <!-- Menu -->
         <nav>
             <ul id="menu">
-                <li><a class="menu-item">tweety.</a></li>
+                <li><a class="action">Tweety</a></li>
                 <li><a class="menu-item" href="">Accueil</a></li>
                 <li><a class="menu-item" href="">Suivis</a></li>
                 <li><a class="menu-item" href="">Profil</a></li>
@@ -44,42 +45,34 @@
             </ul>
         </nav>
 
-    <!-- Page accueil -->
-    <section>
-        <!-- Tweeter -->
-        <form id="formulaire-tweet" action="" method="post">
-            <textarea name="tweet" placeholder="Quoi de neuf ?"></textarea>
-            <input class="action" type="submit" name="action-tweeter" value="Tweet">
-        </form>
-    </section>
+    <!-- Page Administration -->
 
     <section>
         <!-- Affichage tweets -->
         <div id="tweets">
             <?php foreach ($tweets as $tweet): ?>
             <div class="tweet">
-                <div>Utilisateur</div>
-                <?php if (!$tweet->suivi) { ?>
-                <div>
-                    <form action="" method="post">
-                        <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                        <div>
-                            <input class="action follow" type="submit" name="action-follow" value="Follow"/>
-                        </div>
-                    </form>
-                </div>
-                <?php } else { ?>
-                <div>
-                    <form action="" method="post">
-                        <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                        <div>
-                            <input class="action" type="submit" name="action-unfollow" value="Unfollow"/>
-                        </div>
-                    </form>
-                </div>
-                <?php } ?>
-                <div><?=$tweet->date?></div>
                 <div><?=$tweet->post?></div>
+                <div><?=$tweet->date?></div>
+                <table class=bouton-admin>
+                <div>
+                    
+                    <tr><form action="" method="post">
+                        <input type="hidden" name="tid" value="<?=$tweet->tid?>"/>
+                        <div>
+                            <input class="action" type="submit" name="action-modifier" value="Modifier"/>
+                        </div>
+                    </form></tr>
+                </div>
+                <div>
+                    <tr><form action="" method="post">
+                        <input type="hidden" name="tid" value="<?=$tweet->tid?>"/>
+                        <div>
+                            <input class="action" type="submit" name="action-supprimer" value="Supprimer"/>
+                        </div>
+                        </form></tr>
+                </div>
+                </table>
             </div>
             <?php endforeach; ?>
         </div>
