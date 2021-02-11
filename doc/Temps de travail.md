@@ -28,3 +28,5 @@ Temps total de travail : 31h10
 -Travail sur la maquette : 30 min
 -Travail sur la page prototype connexion/inscription : 5h
 -Travail sur la page Mission : 4h
+
+Temps total de travail: 12h30
