@@ -20,3 +20,11 @@ Temps total de travail : 31h10
  - https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/11 : 15 heures
  
  Temps total de travail : 22h
+
+
+### Lucas
+
+-Travail sur Tailwind + tuto : 3h
+-Travail sur la maquette : 30 min
+-Travail sur la page prototype connexion/inscription : 5h
+-Travail sur la page Mission : 4h
