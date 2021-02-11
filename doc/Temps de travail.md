@@ -30,3 +30,15 @@ Temps total de travail : 31h10
 -Travail sur la page Mission : 4h
 
 Temps total de travail: 12h30
+
+### Yohann
+
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/2 : 2 heures
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/3 : 1 heure 30 minutes
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/4 : 1 heure 30 minutes
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/10 : 5 heures
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/12 : 3 heures
+- temps a regarder le code exemples pour voir le MVC : 2 heures
+- Temps a regarder le code de thomas + proposition d'ameloration : 2 heures
+
+temps total de travail 17 heures
