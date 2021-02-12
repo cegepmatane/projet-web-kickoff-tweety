@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/POCTwitterClone.iml" filepath="$PROJECT_DIR$/.idea/POCTwitterClone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Tweety.iml" filepath="$PROJECT_DIR$/.idea/Tweety.iml" />
     </modules>
   </component>
 </project>

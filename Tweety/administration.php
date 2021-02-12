@@ -12,7 +12,7 @@
 <header></header>
 <!-- Connexion -->
 <?php if(!isset($_COOKIE["user"])) {
-    header("Location: connexion.php");
+    header("Location: a_connexion.php");
 } ?>
 <!-- Menu -->
 <?php include('menu.php'); ?>

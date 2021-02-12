@@ -29,7 +29,7 @@ class ConnexionDAO extends Accesseur implements ConnexionSQL {
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
         if ($resultat === false) {
         var_dump($resultat);
-	header("Location: inscription.php");
+	header("Location: a_inscription.php");
             return;
         }
         setcookie("user", $uid, time() + (86400 * 2), "/");

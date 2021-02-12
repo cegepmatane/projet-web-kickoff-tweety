@@ -97,7 +97,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
         if(isset($_COOKIE["user"])) {
             return $_COOKIE["user"];
         } else {
-            header("Location: connexion.php");
+            header("Location: a_connexion.php");
         }
     }
 

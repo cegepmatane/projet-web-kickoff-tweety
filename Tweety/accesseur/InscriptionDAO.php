@@ -36,7 +36,7 @@ class InscriptionDAO extends Accesseur implements InscriptionSQL {
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
         if ($resultat === false) {
-            header("Location: inscription.php");
+            header("Location: a_inscription.php");
             return;
         }
 
