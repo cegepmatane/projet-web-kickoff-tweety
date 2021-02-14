@@ -13,6 +13,119 @@
 body {
     background-color: #000000;
     font-size: 2.2vh;
+    display: block;
+    overflow: auto;
+}
+
+/* Animation */
+
+#conteneur-points {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.luisant {
+    position: relative;
+    min-width: 40vw;
+    height: 40vw;
+    transform-origin: right;
+    animation: colorChange 5s linear infinite;
+}
+
+.luisant:nth-child(even) {
+    transform-origin: left;
+}
+
+@keyframes colorChange {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.luisant span {
+    position: absolute;
+    top: calc(3vh * var(--i));
+    left: calc(3vw * var(--i));
+    bottom: calc(3vh * var(--i));
+    right: calc(3vw * var(--i));
+}
+
+.luisant span:before {
+    content: '';
+    position: absolute;
+    top: 60%;
+    left: -1vw;
+    width: 1vw;
+    height: 1vw;
+    background-color: #f00;
+    border-radius: 50%;
+}
+
+.luisant span:nth-child(3n+1):before {
+    background: rgba(134,255,0,1);
+    box-shadow: 0 0 1vw rgba(134,255,0,1),
+                0 0 2vw rgba(134,255,0,1),
+                0 0 3vw rgba(134,255,0,1),
+                0 0 4vw rgba(134,255,0,1),
+                0 0 0 0.45vw rgba(134,255,0,.1);
+}
+
+.luisant span:nth-child(3n+2):before {
+    background: rgba(255,214,0,1);
+    box-shadow: 0 0 1vw rgba(255,214,0,1),
+                0 0 2vw rgba(255,214,0,1),
+                0 0 3vw rgba(255,214,0,1),
+                0 0 4vw rgba(255,214,0,1),
+                0 0 0 0.45vw rgba(255,214,0,.1);
+}
+
+.luisant span:nth-child(3n+3):before {
+    background: rgba(0,226,255,1);
+    box-shadow: 0 0 1vw rgba(0,226,255,1),
+                0 0 2vw rgba(0,226,255,1),
+                0 0 3vw rgba(0,226,255,11),
+                0 0 4vw rgba(0,226,255,1),
+                0 0 0 0.45vw rgba(0,226,255,.1);
+}
+
+.luisant span:nth-child(3n+1) {
+    animation: animate 10s alternate infinite;
+}
+
+.luisant span:nth-child(3n+2) {
+    animation: animate-reverse 3s alternate infinite;
+}
+
+.luisant span:nth-child(3n+3) {
+    animation: animate-reverse 8s alternate infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-reverse {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 /* Menu */
@@ -104,6 +217,16 @@ section {
 
 /* Section tweets */
 
+#section-tweets {
+    position: relative;
+    z-index: 5;
+}
+
+#section-formulaire {
+    position: relative;
+    z-index: 5;
+}
+
 .tweet {
     display: flex;
     align-items: center;
@@ -147,6 +270,8 @@ section .tweet:last-child {
 
 footer {
     display: flex;
+    position: relative;
+    bottom: 0;
     width: 100%;
     margin-bottom: 0.2%;
     justify-content: center;

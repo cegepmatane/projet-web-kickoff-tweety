@@ -10,16 +10,39 @@ $tweets = TweetDAO::listerTweets();
 $tweetsSuivis = TweetDAO::listerTweetsSuivis();
 ?>
 
+<!-- Points lumineux animés -->
+<div id="conteneur-points">
+    <div class="luisant">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+    </div>
+    <div class="luisant">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+    </div>
+    <div class="luisant">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+    </div>
+    <div class="luisant">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+    </div>
+</div>
+
 <!-- Tweeter -->
-<section>
+<section id="section-formulaire">
     <form id="formulaire-tweet" action="" method="post">
         <textarea name="tweet" placeholder="Quoi de neuf ?"></textarea>
         <input class="action" type="submit" name="action-tweeter" value="Tweet">
     </form>
 </section>
 
-
-<section>
+<section id="section-tweets">
     <!-- Affichage tweets -->
     <div id="tweets">
         <?php foreach ($tweets as $tweet): ?>
@@ -52,6 +75,7 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
         <?php endforeach; ?>
     </div>
 </section>
+
 
 <!--  Pied de page -->
 <?php require_once('footer.php');
