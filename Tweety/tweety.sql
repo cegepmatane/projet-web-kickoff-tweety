@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 08 fév. 2021 à 14:18
+-- Généré le : lun. 15 fév. 2021 à 13:10
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.13
 
@@ -39,7 +39,9 @@ CREATE TABLE `follows` (
 INSERT INTO `follows` (`uid`, `follower`) VALUES
 (0, 26),
 (1, 1),
-(1, 26);
+(1, 26),
+(34, 1),
+(34, 34);
 
 -- --------------------------------------------------------
 
@@ -51,23 +53,19 @@ CREATE TABLE `tweets` (
   `tid` int(11) NOT NULL,
   `uid` int(11) DEFAULT NULL,
   `post` varchar(140) DEFAULT NULL,
-  `date` datetime DEFAULT NULL
+  `date` datetime DEFAULT NULL,
+  `pseudonyme` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `tweets`
 --
 
-INSERT INTO `tweets` (`tid`, `uid`, `post`, `date`) VALUES
-(26, 26, 'ngrfgns', '2021-01-21 00:59:38'),
-(27, 1, 'tester', '2021-01-22 15:21:36'),
-(41, 1, 'Ceci est un test de tweet', '2021-02-03 14:27:25'),
-(43, 1, 'Ceci est un nouveau tweet de la part de Yann', '2021-02-05 16:03:12'),
-(44, 0, 'Salut (Je suis le premier tweet de Thomas)', '2021-02-05 11:14:54'),
-(46, 1, 'Test de tweet', '2021-02-05 17:26:13'),
-(47, 1, 'Nouveau tweet de Tilodry', '2021-02-05 11:36:44'),
-(51, 34, 'segdrhdrb fhfh', '2021-02-08 13:51:28'),
-(52, 1, 'segdrhdrb fhfh', '2021-02-08 13:52:14');
+INSERT INTO `tweets` (`tid`, `uid`, `post`, `date`, `pseudonyme`) VALUES
+(63, 1, 'Ceci est un test de Tweet après le changement de la requête SQL permettant l\'auto insertion du pseudonyme dans le tweet', '2021-02-15 09:16:58', 'Tilodry'),
+(64, 1, 'Ceci est un test de Tweet après le changement de la requête SQL permettant l\'auto insertion du pseudonyme dans le tweet', '2021-02-15 09:22:02', 'Tilodry'),
+(65, 1, 'Ceci est un test de Tweet après le changement de la requête SQL permettant l\'auto insertion du pseudonyme dans le tweet', '2021-02-15 09:23:33', 'Tilodry'),
+(66, 26, 'Ceci est un tweet', '2021-02-15 12:59:32', 'Lucas');
 
 -- --------------------------------------------------------
 
@@ -124,7 +122,7 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `tweets`
 --
 ALTER TABLE `tweets`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`

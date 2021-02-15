@@ -34,7 +34,7 @@ $tweets = TweetDAO::listerTweets();
         <?php foreach ($tweets as $tweet): ?>
             <div class="tweet">
                 <div>
-                    <td><a href=" " title="<?= UtilisateurDAO::obtenirBiographie($tweet->uid)?>"><?=UtilisateurDAO::obtenirPseudonyme($tweet->uid)?></a></td>
+                    <td><?=$tweet->pseudonyme?></td>
                 </div>
                 <div>
                     <td><?=$tweet->post?></td>

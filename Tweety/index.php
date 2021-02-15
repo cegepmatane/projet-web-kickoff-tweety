@@ -48,7 +48,7 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
         <?php foreach ($tweets as $tweet): ?>
             <div class="tweet">
                 <div>
-                    <td><a href=" " title="<?= UtilisateurDAO::obtenirBiographie($tweet->uid)?>"><?=UtilisateurDAO::obtenirPseudonyme($tweet->uid)?></a></td>
+                    <td><?=$tweet->pseudonyme?></td>
                 </div>
                 <?php if(TweetDAO::estUnFollower(TweetDAO::obtenirUtilisateur(),$tweet->uid)) { ?>
                     <td>

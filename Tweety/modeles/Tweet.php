@@ -5,12 +5,14 @@ class Tweet {
     public static array $filtres = array(
         'tid' => FILTER_VALIDATE_INT,
         'uid' => FILTER_VALIDATE_INT,
+        'pseudonyme' => FILTER_SANITIZE_STRING,
         'post' => FILTER_SANITIZE_STRING,
         'date' => FILTER_SANITIZE_STRING,
     );
 
     protected $tid;
     protected $uid;
+    protected $pseudonyme;
     protected $post;
     protected $date;
 
@@ -19,6 +21,7 @@ class Tweet {
 
         $this->tid = $tableau['tid'];
         $this->uid = $tableau['uid'];
+        $this->pseudonyme = $tableau['pseudonyme'];
         $this->post = $tableau['post'];
         $this->date = $tableau['date'];
     }
@@ -30,6 +33,9 @@ class Tweet {
                 break;
             case 'uid':
                 $this->uid = $valeur;
+                break;
+            case 'pseudonyme':
+                $this->pseudonyme = $valeur;
                 break;
             case 'post':
                 $this->post = $valeur;
