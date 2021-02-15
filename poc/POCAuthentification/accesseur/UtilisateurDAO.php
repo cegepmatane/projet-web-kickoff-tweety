@@ -44,11 +44,11 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         $requete->execute();
     }
 
-    public static function obtenirPseudonyme($utilisateur = false) {
+    public static function obtenirNomutilisateur($utilisateur = false) {
         self::initialiser();
         if ($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
 
-        $requete = self::$bd->prepare(self::SQL_OBTENIR_PSEUDONYME);
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_NOMUTILISATEUR);
         $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
 
         $requete->execute();
@@ -56,7 +56,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
         if($resultat){
-            return $resultat["pseudonyme"];
+            return $resultat["nomutilisateur"];
         }
         return "Erreur";
     }
