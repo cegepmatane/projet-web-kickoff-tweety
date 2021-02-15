@@ -7,7 +7,7 @@
     <form method="post">
         <input type="text" name="nomutilisateur" placeholder="Nom d'utilisateur">
         <input type="password" name="motdepasse" placeholder="Mot de passe">
-        <input type="submit" name="action-connecter" value="Connexion">
+        <input class="action" type="submit" name="action-connecter" value="Connexion">
     </form>
 </section>
 

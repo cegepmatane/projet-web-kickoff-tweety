@@ -1,3 +1,8 @@
+<?php
+require_once ('util.php');
+initialiser_session();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>

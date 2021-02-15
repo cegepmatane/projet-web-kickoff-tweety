@@ -17,6 +17,10 @@ body {
     overflow: auto;
 }
 
+input {
+    color: black;
+}
+
 /* Animation */
 
 #conteneur-points {
