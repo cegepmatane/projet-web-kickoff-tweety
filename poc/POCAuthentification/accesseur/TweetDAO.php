@@ -92,11 +92,6 @@ class TweetDAO extends Accesseur implements TweetSQL {
         return true;
     }
 
-    /** Retourne l'id de l'utilisateur connecté */
-    public static function obtenirUtilisateur() {
-        return "Thomas";
-    }
-
     /** ADMINISTRATION */
 
     /** Retourne un tweet */

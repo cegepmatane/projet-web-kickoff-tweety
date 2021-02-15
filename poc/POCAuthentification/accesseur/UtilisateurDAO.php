@@ -1,6 +1,7 @@
 <?php
 
 require_once ('UtilisateurSQL.php');
+require_once ('modeles/Utilisateur.php');
 
 if (!class_exists('Accesseur')) {
     class Accesseur {
@@ -44,7 +45,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         $requete->execute();
     }
 
-    public static function obtenirNomutilisateur($utilisateur = false) {
+    public static function obtenirNomutilisateur($utilisateur = false): string {
         self::initialiser();
         if ($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
 
@@ -61,7 +62,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         return "Erreur";
     }
 
-    public static function obtenirBiographie($utilisateur = false) {
+    public static function obtenirBiographie($utilisateur = false): string {
         self::initialiser();
         if ($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
         //$utilisateur = $this->obtenirUtilisateur();
@@ -79,9 +80,18 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         return "Erreur";
     }
 
-    /** Retourne l'id de l'utilisateur connecté */
-    public static function obtenirUtilisateur() {
-        return "Thomas";
+    /** Retourne un objet utilisateur */
+    public static function obtenirUtilisateur($nomutilisateur) : Utilisateur {
+        self::initialiser();
+
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_UTILISATEUR);
+        $requete->bindParam('nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
+
+        $requete->execute();
+
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return new Utilisateur($resultat);
     }
 
 }
