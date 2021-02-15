@@ -1,0 +1,7 @@
+Bonjour, 
+
+Ceci est un courriel envoyé automatiquement, vous trouvez ici votre facture pour le don que vous venez d'effectuer
+
+Merci a vous $nomUtilisateur pour ce don de $sommesDon
+
+Nous vous remercions de tout cœur
