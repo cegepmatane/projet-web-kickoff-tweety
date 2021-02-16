@@ -7,5 +7,5 @@ if ($utilisateur && password_verify($_POST['motdepasse'], $utilisateur->motdepas
     $_SESSION['utilisateur'] = $utilisateur;
     header('Location: accueil.php');
 } else {
-        echo 'Id ou mdp incorrect';
+        $erreur = "connexion_echouee";
 }

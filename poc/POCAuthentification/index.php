@@ -1,11 +1,11 @@
 <!-- En-tête -->
 <?php require_once ('header.php');
 
+// Redirige l'utilisateur vers la page d'accueil s'il est déjà connecté
 if (est_connecte()) {
     header('Location: accueil.php');
 }
-
-require_once ('action/gerer-connexion.php');?>
+?>
 
 <section>
     <form method="post">

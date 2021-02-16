@@ -6,3 +6,7 @@ if (!empty($_POST['action-connecter'])) {
         require_once ('action/a_connecter.php');
     }
 }
+
+if (!empty($_POST['action-deconnecter'])) {
+    require_once ('action/a_deconnecter.php');
+}

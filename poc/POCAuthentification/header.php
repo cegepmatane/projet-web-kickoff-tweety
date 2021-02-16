@@ -1,7 +1,9 @@
 <?php
 require_once('accesseur/UtilisateurDAO.php');
 require_once ('util.php');
+
 initialiser_session();
+require_once('action/gerer-connexion.php');
 ?>
 
 <!DOCTYPE html>
