@@ -45,4 +45,9 @@ class Utilisateur {
                 break;
         }
     }
+
+    public function __get($propriete) {
+        $self = get_object_vars($this);
+        return $self[$propriete];
+    }
 }

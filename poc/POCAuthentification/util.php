@@ -15,9 +15,17 @@ function purger_session() : void {
 }
 
 function est_connecte() : bool {
-    return true;
+    if (isset($_SESSION['utilisateur'])) {
+        return true;
+    }
+    return false;
 }
 
 function est_admin() : bool {
-    return true;
+    if (est_connecte()) {
+        if ($_SESSION['utilisateur']->estadmin === 1) {
+            return true;
+        }
+    }
+    return false;
 }

@@ -2,4 +2,10 @@
 
 $utilisateur = UtilisateurDAO::obtenirUtilisateur($_POST['nomutilisateur']);
 
-var_dump($utilisateur);
+if ($utilisateur && password_verify($_POST['motdepasse'], $utilisateur->motdepasse)) {
+    initialiser_session();
+    $_SESSION['utilisateur'] = $utilisateur;
+    header('Location: accueil.php');
+} else {
+        echo 'Id ou mdp incorrect';
+}

@@ -59,7 +59,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         if($resultat){
             return $resultat["nomutilisateur"];
         }
-        return "Erreur";
+        return "erreur";
     }
 
     public static function obtenirBiographie($utilisateur = false): string {
@@ -77,11 +77,11 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         if($resultat){
             return $resultat["biographie"];
         }
-        return "Erreur";
+        return "erreur";
     }
 
     /** Retourne un objet utilisateur */
-    public static function obtenirUtilisateur($nomutilisateur) : Utilisateur {
+    public static function obtenirUtilisateur($nomutilisateur) {
         self::initialiser();
 
         $requete = self::$bd->prepare(self::SQL_OBTENIR_UTILISATEUR);
@@ -91,7 +91,10 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
 
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
-        return new Utilisateur($resultat);
+        if ($resultat) {
+            return new Utilisateur($resultat);
+        }
+        return null;
     }
 
 }

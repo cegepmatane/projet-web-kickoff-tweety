@@ -1,10 +1,11 @@
 <!-- En-tête -->
-<?php require_once ('header.php'); ?>
+<?php require_once ('header.php');
 
-<?php
-require_once ('accesseur/UtilisateurDAO.php');
+if (est_connecte()) {
+    header('Location: accueil.php');
+}
 
-require_once ('action/gerer-connexion.php'); ?>
+require_once ('action/gerer-connexion.php');?>
 
 <section>
     <form method="post">
