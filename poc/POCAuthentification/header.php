@@ -13,7 +13,7 @@ require_once('action/gerer-connexion.php');
         <meta name="viewport" content="width=device, initial-scale=1.0">
         <title>Tweety | Accueil</title>
 
-        <link rel="stylesheet" href="decoration/accueil.css">
+        <link rel="stylesheet" href="decoration/authentification.css">
     </head>
     <body>
         <!-- En-tête -->
