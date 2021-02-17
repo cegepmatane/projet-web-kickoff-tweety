@@ -6,4 +6,6 @@ interface UtilisateurSQL {
     public const SQL_OBTENIR_UTILISATEUR = "SELECT * FROM utilisateurs WHERE nomutilisateur=:nomutilisateur";
     public const SQL_OBTENIR_NOMUTILISATEUR = "SELECT nomutilisateur FROM utilisateurs WHERE uid=:uid";
     public const SQL_OBTENIR_BIOGRAPHIE = "SELECT biographie FROM utilisateurs WHERE uid=:uid";
+    public const SQL_INSCRIRE_UTILISATEUR = "INSERT INTO utilisateurs(nomutilisateur, motdepasse) values(:nomutilisateur, :motdepasse)";
+    public const SQL_OBTENIR_NOMSUTILISATEURS = "SELECT nomutilisateur FROM utilisateurs WHERE nomutilisateur=:nomutilisateur";
 }
