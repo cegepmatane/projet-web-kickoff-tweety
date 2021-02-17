@@ -3,7 +3,7 @@ require_once('accesseur/UtilisateurDAO.php');
 require_once ('util.php');
 
 initialiser_session();
-require_once('action/gerer-connexion.php');
+require_once('action/gerer-authentification.php');
 ?>
 
 <!DOCTYPE html>
