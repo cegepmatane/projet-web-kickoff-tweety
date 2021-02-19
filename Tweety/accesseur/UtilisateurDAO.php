@@ -89,4 +89,19 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         }
     }
 
+    /*Modifier Profil*/
+    public static function modifierProfil($pseudonymeModifier, $biographieModifier, $utilisateur = false)
+    {
+        self::initialiser();
+        if($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
+
+        $requeteModifierProfil = UtilisateurDAO::$bd->prepare(UtilisateurDAO::SQL_MODIFIER_PROFIL);
+        $requeteModifierProfil->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requeteModifierProfil->bindValue(':pseudonyme', $pseudonymeModifier, PDO::PARAM_STR);
+        $requeteModifierProfil->bindValue(':biographie', $biographieModifier, PDO::PARAM_STR);
+
+        $requeteModifierProfil->execute();
+    }
+
+
 }
