@@ -6,6 +6,7 @@ class Utilisateur {
         'uid' => FILTER_VALIDATE_INT,
         'biographie' => FILTER_SANITIZE_STRING,
         'nomutilisateur' => FILTER_SANITIZE_STRING,
+        'email' => FILTER_SANITIZE_STRING,
         'motdepasse' => FILTER_SANITIZE_STRING,
         'estadmin' => FILTER_VALIDATE_INT,
     );
@@ -13,6 +14,7 @@ class Utilisateur {
     protected $uid;
     protected $biographie;
     protected $nomutilisateur;
+    protected $email;
     protected $motdepasse;
     protected $estadmin;
 
@@ -22,6 +24,7 @@ class Utilisateur {
         $this->uid = $tableau['uid'];
         $this->biographie = $tableau['biographie'];
         $this->nomutilisateur = $tableau['nomutilisateur'];
+        $this->email = $tableau['email'];
         $this->motdepasse = $tableau['motdepasse'];
         $this->estadmin = $tableau['estadmin'];
     }
@@ -36,6 +39,9 @@ class Utilisateur {
                 break;
             case 'nomutilisateur':
                 $this->nomutilisateur = $valeur;
+                break;
+            case 'email':
+                $this->email = $valeur;
                 break;
             case 'motdepasse':
                 $this->motdepasse = $valeur;

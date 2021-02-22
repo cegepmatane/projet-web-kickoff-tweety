@@ -8,8 +8,8 @@ if (!empty($_POST['action-connecter'])) {
 }
 
 if (!empty($_POST['action-inscrire'])) {
-    if (isset($_POST['nomutilisateur'], $_POST['motdepasse'], $_POST['confirmation-motdepasse'])
-    && !empty($_POST['nomutilisateur']) && !empty($_POST['motdepasse']) && !empty($_POST['confirmation-motdepasse'])) {
+    if (isset($_POST['nomutilisateur'], $_POST['email'] ,$_POST['motdepasse'], $_POST['confirmation-motdepasse'])
+    && !empty($_POST['nomutilisateur']) && !empty($_POST['email']) && !empty($_POST['motdepasse']) && !empty($_POST['confirmation-motdepasse'])) {
         require_once ('action/a_inscrire.php');
     }
 }

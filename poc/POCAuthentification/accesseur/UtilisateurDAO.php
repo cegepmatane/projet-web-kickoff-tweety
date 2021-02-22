@@ -97,7 +97,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         return null;
     }
 
-    public static function inscrireUtilisateur($nomutilisateur, $motdepasse) {
+    public static function inscrireUtilisateur($nomutilisateur, $email, $motdepasse) {
         self::initialiser();
 
         // Vérifier si le nom d'utilisateur n'est pas déjà utilisée
@@ -112,6 +112,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         // Inscrire l'utilisateur
         $requete = self::$bd->prepare(self::SQL_INSCRIRE_UTILISATEUR);
         $requete->bindParam('nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
+        $requete->bindParam('email', $email, PDO::PARAM_STR);
         $motdepasse = password_hash($motdepasse, PASSWORD_BCRYPT);
         $requete->bindParam('motdepasse', $motdepasse, PDO::PARAM_STR);
         $requete->execute();
