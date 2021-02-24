@@ -11,3 +11,13 @@
 - https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/13
 
 Temps total de travail : 31h10
+
+## Itération 2
+
+### Thomas
+
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/18
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/21
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/17
+
+Temps total de travail : 11h30
