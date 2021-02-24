@@ -100,7 +100,7 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         self::initialiser();
 
         // Vérifier si le nom d'utilisateur n'est pas déjà utilisée
-        $requete = self::$bd->prepare($_SESSION['utilisateur']->nomutilisateur);
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_NOMSUTILISATEURS);
         $requete->bindParam('nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
         $requete->execute();
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
