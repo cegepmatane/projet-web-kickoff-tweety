@@ -1,18 +1,34 @@
-<!DOCTYPE html>
+<?php
+require_once('accesseur/UtilisateurDAO.php');
+require_once ('util.php');
 
+initialiser_session();
+require_once('action/gerer-authentification.php');
+?>
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device, initial-scale=1.0">
+    <title>Tweety | Mission</title>
+
     <link rel="stylesheet" href="decoration/a-propos.css">
-    <title>Page mission</title>
 </head>
 <body>
-
+<header></header>
 <!-- Menu -->
-<?php require_once('menu.php'); ?>
+<?php include('menu.php'); ?>
 
-    <section>
+<?php
+// Redirige l'utilisateur vers la page d'authentification s'il n'est pas connecté
+if (!est_connecte()) {
+    header('Location: index.php');
+}
+?>
+
+
+<section>
         <div>
             <h2>Notre mission</h2>
             <br>

@@ -1,6 +1,7 @@
 <?php
 
 require_once ('UtilisateurSQL.php');
+require_once ('modeles/Utilisateur.php');
 
 if (!class_exists('Accesseur')) {
     class Accesseur {
@@ -8,7 +9,7 @@ if (!class_exists('Accesseur')) {
 
         public static function initialiser(): void {
             $usager = 'root';
-            $motdepasse = '';
+            $motdepasse = 'yohann59';
             $hote = 'localhost';
             $base = 'tweety';
             $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
@@ -24,10 +25,10 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
     public static function ajouterAbonnement($follower): void {
         self::initialiser();
 
-        $utilisateur = self::obtenirUtilisateur();
+        $uid = $_SESSION['utilisateur']->uid;
 
         $requete = self::$bd->prepare(self::SQL_AJOUTER_ABONNEMENT);
-        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
         $requete->bindParam(':follower', $follower, PDO::PARAM_INT);
         $requete->execute();
     }
@@ -36,38 +37,37 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
     public static function retirerAbonnement($follower): void {
         self::initialiser();
 
-        $utilisateur = self::obtenirUtilisateur();
+        $uid = $_SESSION['utilisateur']->uid;
 
         $requete = self::$bd->prepare(self::SQL_RETIRER_ABONNEMENT);
-        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
         $requete->bindParam(':follower', $follower, PDO::PARAM_INT);
         $requete->execute();
     }
 
-    public static function obtenirPseudonyme($utilisateur = false) {
+    public static function obtenirNomutilisateur($uid = false): string {
         self::initialiser();
-        if($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
+        if ($uid === false) $uid = $_SESSION['utilisateur']->uid;
 
-        $requete = self::$bd->prepare(self::SQL_OBTENIR_PSEUDONYME);
-        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_NOMUTILISATEUR);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
 
         $requete->execute();
 
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
         if($resultat){
-            return $resultat["pseudonyme"];
+            return $resultat["nomutilisateur"];
         }
-        return "Erreur";
+        return "erreur";
     }
 
-    public static function obtenirBiographie($utilisateur = false) {
+    public static function obtenirBiographie($uid = false): string {
         self::initialiser();
-        if($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
-        //$utilisateur = $this->obtenirUtilisateur();
+        if ($uid === false) $uid = $_SESSION['utilisateur']->uid;
 
         $requete = self::$bd->prepare(self::SQL_OBTENIR_BIOGRAPHIE);
-        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
 
         $requete->execute();
 
@@ -76,32 +76,60 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         if($resultat){
             return $resultat["biographie"];
         }
-        return "Erreur";
+        return "erreur";
     }
 
-    /** Retourne l'id de l'utilisateur connecté */
-    public static function obtenirUtilisateur() {
+    /** Retourne un objet utilisateur */
+    public static function obtenirUtilisateur($nomutilisateur) {
         self::initialiser();
-        if(isset($_COOKIE["user"])) {
-            return $_COOKIE["user"];
-        } else {
-            header("Location: a_connexion.php");
+
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_UTILISATEUR);
+        $requete->bindParam('nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
+
+        $requete->execute();
+
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+        if ($resultat) {
+            return new Utilisateur($resultat);
         }
+        return null;
     }
 
-    /*Modifier Profil*/
-    public static function modifierProfil($pseudonymeModifier, $biographieModifier, $utilisateur = false)
+    public static function inscrireUtilisateur($nomutilisateur, $email, $motdepasse) {
+        self::initialiser();
+
+        // Vérifier si le nom d'utilisateur n'est pas déjà utilisée
+        $requete = self::$bd->prepare($_SESSION['utilisateur']->nomutilisateur);
+        $requete->bindParam('nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
+        $requete->execute();
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        if ($resultat) {
+            return null;
+        }
+
+        // Inscrire l'utilisateur
+        $requete = self::$bd->prepare(self::SQL_INSCRIRE_UTILISATEUR);
+        $requete->bindParam('nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
+        $requete->bindParam('email', $email, PDO::PARAM_STR);
+        $motdepasse = password_hash($motdepasse, PASSWORD_BCRYPT);
+        $requete->bindParam('motdepasse', $motdepasse, PDO::PARAM_STR);
+        $requete->execute();
+        return true;
+    }
+
+    /* Modifier Profil */
+    public static function modifierProfil($nomutilisateur, $biographie, $uid = false)
     {
         self::initialiser();
-        if($utilisateur === false) $utilisateur = UtilisateurDAO::obtenirUtilisateur();
+        if ($uid === false) $uid = $_SESSION['utilisateur']->uid;
 
-        $requeteModifierProfil = UtilisateurDAO::$bd->prepare(UtilisateurDAO::SQL_MODIFIER_PROFIL);
-        $requeteModifierProfil->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
-        $requeteModifierProfil->bindValue(':pseudonyme', $pseudonymeModifier, PDO::PARAM_STR);
-        $requeteModifierProfil->bindValue(':biographie', $biographieModifier, PDO::PARAM_STR);
+        $requeteModifierProfil = self::$bd->prepare(self::SQL_MODIFIER_PROFIL);
+        $requeteModifierProfil->bindParam(':uid', $uid, PDO::PARAM_INT);
+        $requeteModifierProfil->bindValue(':nomutilisateur', $nomutilisateur, PDO::PARAM_STR);
+        $requeteModifierProfil->bindValue(':biographie', $biographie, PDO::PARAM_STR);
 
         $requeteModifierProfil->execute();
     }
-
 
 }

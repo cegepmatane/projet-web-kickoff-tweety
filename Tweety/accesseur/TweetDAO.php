@@ -9,7 +9,7 @@ if (!class_exists('Accesseur')) {
 
         public static function initialiser(): void {
             $usager = 'root';
-            $motdepasse = '';
+            $motdepasse = 'yohann59';
             $hote = 'localhost';
             $base = 'tweety';
             $dsn = 'mysql:dbname=' . $base . ';host=' . $hote;
@@ -37,8 +37,6 @@ class TweetDAO extends Accesseur implements TweetSQL {
 
     /** Retourne un array des tweets des utilisateurs suivis */
     public static function listerTweetsSuivis($utilisateur = false): array {
-        if ($utilisateur === false) $utilisateur = self::obtenirUtilisateur();
-
         self::initialiser();
         $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEETS_SUIVIS);
         $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
@@ -56,23 +54,15 @@ class TweetDAO extends Accesseur implements TweetSQL {
     public static function ajouterTweet($tweet): void {
         self::initialiser();
 
-        // Si l'utilisateur qui tweete n'existe pas, le créer
-        $utilisateur = self::obtenirUtilisateur();
-        if (!$utilisateur) {
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $requete = self::$bd->prepare(self::SQL_AJOUTER_UTILISATEUR);
-            $requete->bindParam(':ip', $ip, PDO::PARAM_STR);
-            $requete->execute();
-        }
+        $uid = $_SESSION['utilisateur']->uid;
 
         // Enregistrer le tweet
-
         $date = Date("Y-m-d H:i:s");
         $requete = self::$bd->prepare(self::SQL_AJOUTER_TWEET);
-        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
         $requete->bindParam(':tweet', $tweet, PDO::PARAM_STR);
         $requete->bindParam(':date', $date, PDO::PARAM_STR);
-        $requete->bindParam(':uid', $utilisateur, PDO::PARAM_INT);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
         $requete->execute();
     }
 
@@ -90,16 +80,6 @@ class TweetDAO extends Accesseur implements TweetSQL {
             return false;
         }
         return true;
-    }
-
-    /** Retourne l'id de l'utilisateur connecté */
-    public static function obtenirUtilisateur() {
-        self::initialiser();
-        if(isset($_COOKIE["user"])) {
-            return $_COOKIE["user"];
-        } else {
-            header("Location: a_connexion.php");
-        }
     }
 
     /** ADMINISTRATION */
@@ -135,4 +115,22 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete->execute();
     }
 
+    /* PROFIL */
+    public function listerTweetsCompte(): array {
+        self::initialiser();
+
+        $uid = $_SESSION['utilisateur']->uid;
+
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEETS_COMPTE);
+        $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
+        $requete->execute();
+
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+        $tweets = array();
+        foreach ($resultat as $tweet) {
+            $tweets[] = new Tweet($tweet);
+        }
+        return $tweets;
+    }
 }

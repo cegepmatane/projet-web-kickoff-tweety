@@ -1,81 +1,57 @@
 <!-- En-tête -->
-<?php require_once('header.php'); ?>
-
 <?php
-require_once ('accesseur/UtilisateurDAO.php');
-require_once ('accesseur/TweetDAO.php');
+require_once('accesseur/UtilisateurDAO.php');
+require_once ('util.php');
 
-require_once('action/gerer-accueil.php');
-$tweets = TweetDAO::listerTweets();
-$tweetsSuivis = TweetDAO::listerTweetsSuivis();
+initialiser_session();
+require_once('action/gerer-authentification.php');
 ?>
 
-<!-- Points lumineux animés -->
-<div id="conteneur-points">
-    <div class="luisant">
-        <span style="--i:1;"></span>
-        <span style="--i:2;"></span>
-        <span style="--i:3;"></span>
-    </div>
-    <div class="luisant">
-        <span style="--i:1;"></span>
-        <span style="--i:2;"></span>
-        <span style="--i:3;"></span>
-    </div>
-    <div class="luisant">
-        <span style="--i:1;"></span>
-        <span style="--i:2;"></span>
-        <span style="--i:3;"></span>
-    </div>
-    <div class="luisant">
-        <span style="--i:1;"></span>
-        <span style="--i:2;"></span>
-        <span style="--i:3;"></span>
-    </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device, initial-scale=1.0">
+    <title>Tweety</title>
+
+    <link rel="stylesheet" href="decoration/authentification.css">
+</head>
+<body>
+<header></header>
+<!-- Menu -->
+<?php include('menu.php'); ?>
+
+<?php
+// Redirige l'utilisateur vers la page d'accueil s'il est déjà connecté
+if (est_connecte()) {
+    header('Location: accueil.php');
+}
+?>
+
+<!-- Page -->
+<div id="conteneur">
+    <section>
+        <h2>Connexion</h2>
+        <form method="post">
+            <input type="text" name="nomutilisateur" placeholder="Nom d'utilisateur">
+            <input type="password" name="motdepasse" placeholder="Mot de passe">
+            <input class="action" type="submit" name="action-connecter" value="Connexion">
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Inscription</h2>
+        <form method="post">
+            <input type="text" name="nomutilisateur" placeholder="Nom utilisateur">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="motdepasse" placeholder="Mot de passe">
+            <input type="password" name="confirmation-motdepasse" placeholder="Confirmation du mot de passe">
+            <input class="action" type="submit" name="action-inscrire" value="Inscription">
+        </form>
+    </section>
 </div>
-
-<!-- Tweeter -->
-<section id="section-formulaire">
-    <form id="formulaire-tweet" action="" method="post">
-        <textarea name="tweet" placeholder="Quoi de neuf ?"></textarea>
-        <input class="action" type="submit" name="action-tweeter" value="Tweet">
-    </form>
-</section>
-
-<section id="section-tweets">
-    <!-- Affichage tweets -->
-    <div id="tweets">
-        <?php foreach ($tweets as $tweet): ?>
-            <div class="tweet">
-                <div>
-                    <td><?=$tweet->pseudonyme?></td>
-                </div>
-                <?php if(TweetDAO::estUnFollower(TweetDAO::obtenirUtilisateur(),$tweet->uid)) { ?>
-                    <td>
-                        <form action="" method="post">
-                            <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                            <div>
-                                <input class="action follow" type="submit" name="action-unfollow" value="Unfollow"/>
-                            </div>
-                        </form>
-                    </td>
-                <?php } else { ?>
-                    <td>
-                        <form action="" method="post">
-                            <input type="hidden" name="uid" value="<?=$tweet->uid?>"/>
-                            <div>
-                                <input class="action" type="submit" name="action-follow" value="Follow"/>
-                            </div>
-                        </form>
-                    </td>
-                <?php } ?>
-                <div><?=$tweet->date?></div>
-                <div><?=$tweet->post?></div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-
 
 <!--  Pied de page -->
 <?php require_once('footer.php');

@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device, initial-scale=1.0">
-    <title>Tweety | Administration</title>
+<?php
+require_once('accesseur/UtilisateurDAO.php');
+require_once ('util.php');
 
-    <link rel="stylesheet" href="decoration/administration.css">
-</head>
+initialiser_session();
+require_once('action/gerer-authentification.php');
+?>
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device, initial-scale=1.0">
+        <title>Tweety | Administration</title>
+
+        <link rel="stylesheet" href="decoration/accueil.css">
+    </head>
 <body>
-<!-- En-tête -->
 <header></header>
-<!-- Connexion -->
-<?php if(!isset($_COOKIE["user"])) {
-    header("Location: a_connexion.php");
-} ?>
 <!-- Menu -->
 <?php include('menu.php'); ?>
+
+<?php
+// Redirige l'utilisateur vers la page d'authentification s'il n'est pas connecté
+if (!est_connecte()) {
+    header('Location: index.php');
+}
+?>
+
 
 <?php
 require_once ('accesseur/TweetDAO.php');
@@ -34,7 +45,7 @@ $tweets = TweetDAO::listerTweets();
         <?php foreach ($tweets as $tweet): ?>
             <div class="tweet">
                 <div>
-                    <td><?=$tweet->pseudonyme?></td>
+                    <td><?=$tweet->nomutilisateur?></td>
                 </div>
                 <div>
                     <td><?=$tweet->post?></td>
