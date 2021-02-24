@@ -14,4 +14,5 @@ if ($_POST['biographie'] === "") {
 
 UtilisateurDAO::modifierProfil($nomutilisateur, $biographie);
 
-$_SESSION['utilisateur'] = UtilisateurDAO::obtenirUtilisateur($_POST['nomutilisateur']);
+$_SESSION['utilisateur']->biographie = $biographie;
+$_SESSION['utilisateur']->nomutilisateur = $nomutilisateur;
