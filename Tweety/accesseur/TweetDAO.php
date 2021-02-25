@@ -50,7 +50,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
         return $tweets;
     }
 
-    /** Ajoute un tweet */
+    /** Ajoute un tweet et retourne le tweet ajouté */
     public static function ajouterTweet($tweet): Tweet {
         self::initialiser();
 
