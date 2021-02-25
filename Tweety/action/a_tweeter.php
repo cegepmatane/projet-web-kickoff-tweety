@@ -1,3 +1,3 @@
 <?php
 
-TweetDAO::ajouterTweet($_POST['tweet']);
+$tweet = TweetDAO::ajouterTweet($_POST['tweet']);

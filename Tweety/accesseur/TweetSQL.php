@@ -6,6 +6,7 @@ interface TweetSQL {
         ORDER BY date DESC";
     public const SQL_AJOUTER_TWEET = "INSERT INTO tweets(uid, post, date, nomutilisateur) SELECT :uid, :tweet, :date, utilisateurs.nomutilisateur FROM utilisateurs WHERE utilisateurs.uid=:uid";
     public const SQL_EST_UN_FOLLOWER = "SELECT follower FROM follows WHERE uid=:uid and follower=:follower";
+    public const SQL_OBTENIR_TWEET = "SELECT * FROM tweets where tid=:tid";
 
     /* ADMINISTRATION */
     public const SQL_DETAILLER_TWEET = "SELECT * FROM tweets WHERE tid=:tid";

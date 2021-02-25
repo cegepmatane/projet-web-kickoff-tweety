@@ -51,7 +51,7 @@ class TweetDAO extends Accesseur implements TweetSQL {
     }
 
     /** Ajoute un tweet */
-    public static function ajouterTweet($tweet): void {
+    public static function ajouterTweet($tweet): Tweet {
         self::initialiser();
 
         $uid = $_SESSION['utilisateur']->uid;
@@ -64,6 +64,14 @@ class TweetDAO extends Accesseur implements TweetSQL {
         $requete->bindParam(':date', $date, PDO::PARAM_STR);
         $requete->bindParam(':uid', $uid, PDO::PARAM_INT);
         $requete->execute();
+
+        $tid = self::$bd->lastInsertId();
+        $requete = self::$bd->prepare(self::SQL_OBTENIR_TWEET);
+        $requete->bindParam(':tid', $tid, PDO::PARAM_INT);
+        $requete->execute();
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return new Tweet($resultat);
     }
 
     /** Retourne true si l'utilisateur suit l'autre utilisateur sinon false*/
