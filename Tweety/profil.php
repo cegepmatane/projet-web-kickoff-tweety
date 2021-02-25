@@ -33,7 +33,11 @@ if (!est_connecte()) {
 require_once ('./accesseur/TweetDAO.php');
 
 $tweetDAO = new TweetDAO();
-$tweets = $tweetDAO->listerTweetsCompte();
+
+if (!apcu_exists('tweets_utilisateur')) {
+    apcu_store('tweets_utilisateur', $tweetDAO->listerTweetsCompte());
+}
+$tweets = apcu_fetch('tweets_utilisateur');
 
 require_once ('./accesseur/UtilisateurDAO.php');
 $utilisateur = new UtilisateurDAO();
