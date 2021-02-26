@@ -12,7 +12,8 @@ require_once('action/gerer-authentification.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device, initial-scale=1.0">
     <title>Tweety | Mission</title>
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <link rel="stylesheet" href="decoration/a-propos.css">
 </head>
 <body>
@@ -21,7 +22,7 @@ require_once('action/gerer-authentification.php');
 <?php include('menu.php'); ?>
 
 <?php
-// Redirige l'utilisateur vers la page d'authentification s'il n'est pas connecté
+//Redirige l'utilisateur vers la page d'authentification s'il n'est pas connecté
 if (!est_connecte()) {
     header('Location: index.php');
 }
@@ -70,7 +71,7 @@ if (!est_connecte()) {
     </section>
 
     <section>
-        <a class="action" href="">Donner</a>
+        <a class="button action" id="checkout-button">Checkout</a>
     </section>
-
+    <script src="scripts/transaction.js"></script>
 </body>

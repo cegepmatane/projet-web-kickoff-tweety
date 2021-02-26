@@ -19,7 +19,6 @@
     </div>
     <button type="button" id="checkout-button">Checkout</button>
 </section>
-</body>
 <script type="text/javascript">
     // Create an instance of the Stripe object with your publishable API key
     var stripe = Stripe("pk_test_51ILr0TAt6RTNlhzW0Fw2G0hAvozfMkXYi2sXGUEUMO9J2UBPMKlHphoSRklvh9zSp3UCCQYFNbya5zsqkx0lcJPd00QiggSeaW");
@@ -47,4 +46,5 @@
             });
     });
 </script>
+</body>
 </html>
