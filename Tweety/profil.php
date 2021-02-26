@@ -40,6 +40,13 @@ $utilisateur = new UtilisateurDAO();
 
 require_once('./action/gerer-profil.php');
 ?>
+    <!-- text Annimer -->
+    <body>
+    <div class="sign">
+      <span class="fast-flicker">T</span>weeT<span class="flicker">y</span>
+    </div>
+  </body>
+    
 <h1><?=$_SESSION['utilisateur']->nomutilisateur?></h1>
 <form method="post">
     <h2>Modifier le nom d'utilisateur : <input type="text" name="nomutilisateur" placeholder=<?=$_SESSION['utilisateur']->nomutilisateur?>></h2>
