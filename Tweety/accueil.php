@@ -2,7 +2,6 @@
 <?php require_once('header.php'); ?>
 
 <?php
-
 require_once ('accesseur/UtilisateurDAO.php');
 require_once ('accesseur/TweetDAO.php');
 
@@ -49,7 +48,7 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
         <?php foreach ($tweets as $tweet):
         ?>
             <div class="tweet">
-                <div>
+                <div class="div-nomutilisateur" id="<?=$tweet->nomutilisateur?>">
                     <td><?=$tweet->nomutilisateur?></td>
                 </div>
                 <?php if(TweetDAO::estUnFollower($_SESSION['utilisateur']->uid, $tweet->uid)) { ?>
@@ -77,6 +76,47 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
         <?php endforeach; ?>
     </div>
 </section>
+
+<script>
+    (function () {
+        let httpRequest;
+
+        let elements = document.getElementsByClassName("div-nomutilisateur");
+        for (let i=0; i<elements.length; i++) {
+            elements[i].addEventListener('click', function(evenement) {
+                effectuerRequete(evenement, 'obtenir-biographie.php', this.id);
+            });
+        }
+
+        function effectuerRequete(evenement, url, nomutilisateur) {
+            console.log("effectuerRequete()")
+            evenement.preventDefault();
+
+            httpRequest = new XMLHttpRequest();
+
+            if (!httpRequest) {
+                console.log('Impossible de créer une instance de XMLHTTP');
+                return false;
+            }
+            httpRequest.onreadystatechange = afficherBiographie;
+            httpRequest.open('POST', url);
+            httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            httpRequest.send('nomutilisateur=' + encodeURIComponent(nomutilisateur));
+        }
+
+        function afficherBiographie() {
+            console.log("afficherBiographie()");
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    let reponse = JSON.parse(httpRequest.responseText);
+                    alert(reponse.biographie);
+                } else {
+                    console.log('Un problème est survenu avec la requête.');
+                }
+            }
+        }
+    })();
+</script>
 
 
 <!--  Pied de page -->
