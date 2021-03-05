@@ -85,7 +85,6 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
         let elements = document.getElementsByClassName("nomutilisateur");
         for (let i=0; i<elements.length; i++) {
             elements[i].addEventListener('click', function(evenement) {
-                console.log(this.id);
                 effectuerRequete(evenement, 'obtenir-biographie.php', this.id);
             });
         }
@@ -99,6 +98,14 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
             id = id.split('-');
             let nomutilisateur = id[0];
             let tid = id[1];
+
+            // Ne plus afficher la biographie s'il est déjà affichée
+            let div = document.getElementById('biographie-'+nomutilisateur+'-'+tid);
+            let style = window.getComputedStyle(div).display
+            if (style === 'block') {
+                div.style.display = 'none';
+                return;
+            }
 
             httpRequest = new XMLHttpRequest();
 
