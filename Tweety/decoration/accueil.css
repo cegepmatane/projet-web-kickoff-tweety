@@ -217,6 +217,10 @@ section {
 
 /* Section tweets */
 
+.biographie {
+    display: none;
+}
+
 #section-tweets {
     position: relative;
     z-index: 5;

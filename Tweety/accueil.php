@@ -47,8 +47,9 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
     <div id="tweets">
         <?php foreach ($tweets as $tweet):
         ?>
+            <div class="biographie" id="biographie-<?=$tweet->nomutilisateur?>-<?=$tweet->tid?>"></div>
             <div class="tweet">
-                <div class="div-nomutilisateur" id="<?=$tweet->nomutilisateur?>">
+                <div class="nomutilisateur" id="nomutilisateur-<?=$tweet->nomutilisateur?>-<?=$tweet->tid?>">
                     <td><?=$tweet->nomutilisateur?></td>
                 </div>
                 <?php if(TweetDAO::estUnFollower($_SESSION['utilisateur']->uid, $tweet->uid)) { ?>
@@ -81,16 +82,23 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
     (function () {
         let httpRequest;
 
-        let elements = document.getElementsByClassName("div-nomutilisateur");
+        let elements = document.getElementsByClassName("nomutilisateur");
         for (let i=0; i<elements.length; i++) {
             elements[i].addEventListener('click', function(evenement) {
+                console.log(this.id);
                 effectuerRequete(evenement, 'obtenir-biographie.php', this.id);
             });
         }
 
-        function effectuerRequete(evenement, url, nomutilisateur) {
+        function effectuerRequete(evenement, url, id) {
             console.log("effectuerRequete()")
             evenement.preventDefault();
+
+            // Extraire le nom d'utilisateur et l'id du tweet
+            id = id.replace('nomutilisateur-', '');
+            id = id.split('-');
+            let nomutilisateur = id[0];
+            let tid = id[1];
 
             httpRequest = new XMLHttpRequest();
 
@@ -98,10 +106,11 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
                 console.log('Impossible de créer une instance de XMLHTTP');
                 return false;
             }
+            // Envoyer la requête
             httpRequest.onreadystatechange = afficherBiographie;
             httpRequest.open('POST', url);
             httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            httpRequest.send('nomutilisateur=' + encodeURIComponent(nomutilisateur));
+            httpRequest.send('nomutilisateur=' + encodeURIComponent(nomutilisateur)+'&tid=' + encodeURIComponent(tid));
         }
 
         function afficherBiographie() {
@@ -109,7 +118,9 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200) {
                     let reponse = JSON.parse(httpRequest.responseText);
-                    alert(reponse.biographie);
+                    let div = document.getElementById('biographie-'+reponse.nomutilisateur+'-'+reponse.tid);
+                    div.innerHTML = reponse.biographie;
+                    div.style.display = 'block';
                 } else {
                     console.log('Un problème est survenu avec la requête.');
                 }
