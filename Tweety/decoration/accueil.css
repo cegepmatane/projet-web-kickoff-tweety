@@ -219,6 +219,8 @@ section {
 
 .biographie {
     display: none;
+    font-style: italic;
+    margin: 1%;
 }
 
 #section-tweets {
