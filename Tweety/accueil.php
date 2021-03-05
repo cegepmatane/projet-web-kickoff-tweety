@@ -99,12 +99,18 @@ $tweetsSuivis = TweetDAO::listerTweetsSuivis();
             let nomutilisateur = id[0];
             let tid = id[1];
 
-            // Ne plus afficher la biographie s'il est déjà affichée
             let div = document.getElementById('biographie-'+nomutilisateur+'-'+tid);
             let style = window.getComputedStyle(div).display
+            // Ne plus afficher la biographie s'il est déjà affichée
             if (style === 'block') {
                 div.style.display = 'none';
                 return;
+            // Ne pas ré effectuer la requête s'il elle a déjà été faite
+            } else {
+                if (div.innerHTML !== '') {
+                    div.style.display = 'block';
+                    return;
+                }
             }
 
             httpRequest = new XMLHttpRequest();
