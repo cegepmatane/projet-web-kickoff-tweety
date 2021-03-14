@@ -26,7 +26,7 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
                 if (httpRequest.status === 200) {
                     var response = JSON.parse(httpRequest.responseText);
-                    document.getElementById("messageMail").innerHTML = response.message
+                    document.getElementById("messageMail").innerHTML = response.message;
                 } else {
                     alert('Erreur lors de la requête. Contacter Yann ROUBEAU.');
                 }

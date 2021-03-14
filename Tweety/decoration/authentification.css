@@ -71,6 +71,8 @@ input {
     margin: 10% 0;
 }
 
+
+
 section {
     display: flex;
     flex-direction: column;
@@ -104,4 +106,8 @@ footer {
     width: 100%;
     margin-bottom: 0.2%;
     justify-content: center;
+}
+
+#messageMail {
+    color: red;
 }

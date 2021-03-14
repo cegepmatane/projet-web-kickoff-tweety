@@ -45,13 +45,16 @@ if (est_connecte()) {
         <h2>Inscription</h2>
         <form method="post">
             <input type="text" name="nomutilisateur" placeholder="Nom utilisateur">
-            <input type="email" name="email" placeholder="Email">
+            <div id="messageMail"></div>
+            <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="motdepasse" placeholder="Mot de passe">
             <input type="password" name="confirmation-motdepasse" placeholder="Confirmation du mot de passe">
             <input class="action" type="submit" name="action-inscrire" value="Inscription">
         </form>
     </section>
 </div>
+
+<script src="scripts/s_verifier-email.js"></script>
 
 <!--  Pied de page -->
 <?php require_once('footer.php');

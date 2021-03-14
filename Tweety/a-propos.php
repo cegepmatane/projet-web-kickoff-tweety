@@ -73,5 +73,5 @@ if (!est_connecte()) {
     <section>
         <a class="button action" id="checkout-button">Checkout</a>
     </section>
-    <script src="scripts/transaction.js"></script>
+    <script src="scripts/s_transaction.js"></script>
 </body>
