@@ -132,4 +132,17 @@ class UtilisateurDAO extends Accesseur implements UtilisateurSQL {
         $requeteModifierProfil->execute();
     }
 
+    /*Obtenir Email*/
+    public static function obtenirEmail($email)
+    {
+        $requete = self::$bd->prepare(self::SQL_EMAIL_EXISTANT);
+        $requete->bindParam('email', $email, PDO::PARAM_STR);
+        $requete->execute();
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        if ($resultat) {
+            echo($resultat);
+            return $resultat["email"];
+        }
+        return "erreur";
+    }
 }
