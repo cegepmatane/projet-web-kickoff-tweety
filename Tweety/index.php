@@ -55,7 +55,7 @@ if (est_connecte()) {
 </div>
 
 <script src="scripts/s_verifier-email.js"></script>
-<script src="scripts/s_verifier-email-base-de-donne.js"></script>
+<!--<script src="scripts/s_verifier-email-base-de-donne.js"></script>-->
 
 
 <!--  Pied de page -->
