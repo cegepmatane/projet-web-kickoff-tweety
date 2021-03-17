@@ -1,7 +1,7 @@
 var stripe = Stripe("pk_test_51ILr0TAt6RTNlhzW0Fw2G0hAvozfMkXYi2sXGUEUMO9J2UBPMKlHphoSRklvh9zSp3UCCQYFNbya5zsqkx0lcJPd00QiggSeaW");
 var checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", function () {
-    fetch("../Tweety/action/a_creer_transaction.php", {
+    fetch("/action/a_creer_transaction.php", {
         method: "POST",
     })
         .then(function (response) {
