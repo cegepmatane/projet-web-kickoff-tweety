@@ -39,3 +39,11 @@ Temps total de travail : 9
 - https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/30
 
 Temps total de travail : 8h
+
+
+### Yohann 
+
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/31
+- https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/32
+
+Temps total de travail : 12h 
