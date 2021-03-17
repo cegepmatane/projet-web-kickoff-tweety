@@ -50,13 +50,40 @@ if (est_connecte()) {
             <input type="password" name="motdepasse" placeholder="Mot de passe">
             <input type="password" name="confirmation-motdepasse" placeholder="Confirmation du mot de passe">
             <input class="action" type="submit" name="action-inscrire" value="Inscription">
+
+            <body>
+
+
+
+            <p>Suggestions: <span id="txtHint"></span></p>
+
+            <form>
+               Prénom: <input type="text" onkeyup="showHint(this.value)">
+            </form>
+
+            <script>
+                function showHint(str) {
+                    if (str.length == 0) {
+                        document.getElementById("txtHint").innerHTML = "";
+                        return;
+                    } else {
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                document.getElementById("txtHint").innerHTML = this.responseText;
+                            }
+                        };
+                        xmlhttp.open("GET", "gethint.php?q=" + str, true);
+                        xmlhttp.send();
+                    }
+                }
+            </script>
+
         </form>
     </section>
 </div>
 
 <script src="scripts/s_verifier-email.js"></script>
-<!--<script src="scripts/s_verifier-email-base-de-donne.js"></script>-->
-
 
 <!--  Pied de page -->
 <?php require_once('footer.php');
