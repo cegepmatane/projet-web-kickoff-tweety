@@ -1,3 +1,9 @@
+<p>Suggestions: <span id="txtHint"></span></p>
+
+<form>
+    Prénom: <input type="text" onkeyup="showHint(this.value)">
+</form>
+
 <script>
     function showHint(str) {
         if (str.length == 0) {
