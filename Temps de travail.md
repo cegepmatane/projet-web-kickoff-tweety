@@ -23,6 +23,8 @@ Temps total de travail : 33
 
 Temps total de travail : 15
 
+## Itération 3
+
 ### Thomas
 
 - https://github.com/cegepmatane/projet-web-kickoff-tweety/issues/27
